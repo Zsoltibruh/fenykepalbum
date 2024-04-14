@@ -1,7 +1,7 @@
 <?php
 $tns = "(DESCRIPTION = (ADDRESS_LIST =    (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) ) (CONNECT_DATA =(SID = orania2))) ";
 $db_username = "C##NEPTUNKÓD";
-$db_password = "*************";
+$db_password = "kruvaanyad";
 try{
     $conn = new PDO("oci:dbname=".$tns,$db_username,$db_password);
 }catch(PDOException $e){
