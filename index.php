@@ -16,19 +16,17 @@
                 <li><a href="login.html">Bejelentkezés</a></li>
                 <li><a href="signup.html">Regisztráció</a></li>
                 <li><a href="upload.html">Feltöltés</a></li>
+                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <div id="container">
-            <form action="" method="POST" id="image--upload">
-                <label for="image">Kép feltöltése: </label>
-                <input type="file" name="image" id="image">
-            </form>
+            <h1>Sia!</h1>
         </div>
     </main>
     <footer>
-
+        <h1>We're going level 9... bré</h1>
     </footer>
 </body>
 

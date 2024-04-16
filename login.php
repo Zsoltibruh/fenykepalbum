@@ -16,28 +16,25 @@
                 <li><a href="login.html">Bejelentkezés</a></li>
                 <li><a href="signup.html">Regisztráció</a></li>
                 <li><a href="upload.html">Feltöltés</a></li>
+                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <div id="container">
-            <form action="" method="POST" id="authform">
-                <label for="username">Felhasználónév</label>
-                <input type="text" name="username" id="username" required>
+            <form action="includes/manageAuth.php" method="POST" id="authform">
                 <label for="email">E-mail cím</label>
                 <input type="email" name="email" id="email" required>
                 <label for="password">Jelszó</label>
-                <input type="password" name="password" id="password" required minlength="12">
-                <label for="repassword">Jelszó újra</label>
-                <input type="password" name="repassword" id="repassword" required minlength="12">
+                <input type="password" name="password" id="password" required>
                 <div>
-                    <input type="submit" value="Regisztráció">
+                    <input type="submit" value="Bejelentkezés" name="login">
                 </div>
             </form>
         </div>
     </main>
     <footer>
-
+        <h1>lmaorofl</h1>
     </footer>
 </body>
 
