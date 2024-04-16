@@ -24,7 +24,7 @@
         <div id="container">
             <form action="" method="POST" id="image--upload">
                 <label for="image">Kép feltöltése: </label>
-                <input type="file" name="image" id="image">
+                <input type="file" name="image" id="image" accept="image/*">
             </form>
         </div>
     </main>
