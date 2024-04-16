@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE php>
 <php lang="hu">
 
@@ -16,6 +20,7 @@
                 <li><a href="login.php">Bejelentkezés</a></li>
                 <li><a href="signup.php">Regisztráció</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
+                <li><a href="albums.php">Albumok</a></li>
                 <li><a href="photos.php">Fényképek</a></li>
                 <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI?</a></li>
             </ul>
@@ -23,7 +28,14 @@
     </header>
     <main>
         <div id="container">
-            <h1>Sia!</h1>
+            <?php
+            if (isset($_SESSION["felhasznalonev"])) {
+                $username = $_SESSION["felhasznalonev"];
+                echo "<h1>Szia, $username!</h1>";
+            } else {
+                echo "<h1>Szia!</h1>";
+            }
+            ?>
         </div>
     </main>
     <footer>

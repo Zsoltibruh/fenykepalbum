@@ -16,6 +16,7 @@
                 <li><a href="login.php">Bejelentkezés</a></li>
                 <li><a href="signup.php">Regisztráció</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
+                <li><a href="albums.php">Albumok</a></li>
                 <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
             </ul>
         </nav>
@@ -34,6 +35,27 @@
                 <div>
                     <input type="submit" value="Regisztráció" name="signup">
                 </div>
+                <?php
+            if (isset($_GET["error"]))
+            {
+                if ($_GET["error"] == "emptyinput")
+                {
+                    echo '<p>Kérjük minden mezőt töltsön ki!</p>';
+                }
+                else if ($_GET["error"] == "usernametaken")
+                {
+                    echo '<p>Felhasználónév foglalt!</p>';
+                }
+                else if ($_GET["error"] == "invalidemail")
+                {
+                    echo '<p>Helytelen email cím!</p>';
+                }
+                else if ($_GET["error"] == "passwordnotmatches")
+                {
+                    echo '<p>Jelszavak nem egyeznek!</p>';
+                }
+            }
+            ?>
             </form>
         </div>
     </main>
