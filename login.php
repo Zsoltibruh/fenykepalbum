@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="hu">
+<!DOCTYPE php>
+<php lang="hu">
 
 <head>
     <meta charset="UTF-8">
@@ -12,10 +12,10 @@
     <header>
         <nav>
             <ul>
-                <li><a href="index.html">Főoldal</a></li>
-                <li><a href="login.html">Bejelentkezés</a></li>
-                <li><a href="signup.html">Regisztráció</a></li>
-                <li><a href="upload.html">Feltöltés</a></li>
+                <li><a href="index.php">Főoldal</a></li>
+                <li><a href="login.php">Bejelentkezés</a></li>
+                <li><a href="signup.php">Regisztráció</a></li>
+                <li><a href="upload.php">Feltöltés</a></li>
                 <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
             </ul>
         </nav>
@@ -38,4 +38,4 @@
     </footer>
 </body>
 
-</html>
+</php>
