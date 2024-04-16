@@ -13,11 +13,6 @@ if (isset($_POST["signup"])) {
         header("location: ../signup.php?error=emptyinput");
         exit();
     }
-
-    if (invalidName($username)) {
-        header("location: ../signup.php?error=invalidname");
-        exit();
-    }
     
     if (invalidEmail($email)) {
         header("location: ../signup.php?error=invalidemail");
