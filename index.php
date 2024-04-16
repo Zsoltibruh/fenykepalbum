@@ -26,7 +26,7 @@
         </div>
     </main>
     <footer>
-        <h1>We're going level 9... bré</h1>
+        <h1>Az oracle lyo</h1>
     </footer>
 </body>
 

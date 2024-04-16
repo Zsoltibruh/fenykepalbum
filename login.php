@@ -34,7 +34,7 @@
         </div>
     </main>
     <footer>
-        <h1>lmaorofl</h1>
+        <h1>Az oracle lyo</h1>
     </footer>
 </body>
 
