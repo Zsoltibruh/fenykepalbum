@@ -41,14 +41,9 @@ if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    if (emptyInputLogin($username,$password)) {
-        header("location: ../index.php?error=emptyinput");
-        exit();
-    }
-
     loginUser($conn, $username, $password);
     exit();
 } else{
-    header("location: ../index.php");
+    header("location: ../login.php/unkownerror");
     exit();
 }

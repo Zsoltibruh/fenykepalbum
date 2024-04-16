@@ -16,6 +16,7 @@
                 <li><a href="login.php">Bejelentkezés</a></li>
                 <li><a href="signup.php">Regisztráció</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
+                <li><a href="albums.php">Albumok</a></li>
                 <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
             </ul>
         </nav>
@@ -24,7 +25,8 @@
         <div id="container">
             <form action="" method="POST" id="image--upload">
                 <label for="image">Kép feltöltése: </label>
-                <input type="file" name="image" id="image" accept="image/*">
+                <input type="file" name="image" id="image" accept="image/*"> <br> <br>
+                <input type="submit" value="Feltöltés" name="upload">
             </form>
         </div>
     </main>

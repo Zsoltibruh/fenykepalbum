@@ -50,7 +50,7 @@ function createUser($conn, $username, $email, $password){
     $stmt->bindParam(3, $hashpass);
     $stmt->execute();
 
-    header("location: ../index.php?success=signupsuccess");
+    header("location: ../login.php?success=signupsuccess");
     exit();
 }
 
@@ -63,22 +63,21 @@ function emptyInputLogin($username,$password){
 }
 
 function loginUser($conn, $username, $password){
-    $usernameExists = nameExists($conn, $username, $username);
+    $query = "SELECT * FROM felhasznalo WHERE felhasznalonev = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(1, $username);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($usernameExists === false) {
-        header("location: ../login.php?error=nametaken");
-        exit();
-    }
-
-    $checkpassword = password_verify($password, $usernameExists["jelszo"]);
+    $checkpassword = password_verify($password, $user['jelszo']);
 
     if ($checkpassword === false) {
         header("location: ../login.php?error=wrongpassword");
         exit();
     }
-    else {
+    else {  
         session_start();
-        $_SESSION["felhasznalonev"] = $usernameExists["felhasznalonev"];
+        $_SESSION["felhasznalonev"] = $user['felhasznalonev'];
         header("location: ../index.php");
         exit();
     } 
