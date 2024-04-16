@@ -16,7 +16,8 @@
                 <li><a href="login.php">Bejelentkezés</a></li>
                 <li><a href="signup.php">Regisztráció</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
-                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
+                <li><a href="photos.php">Fényképek</a></li>
+                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI?</a></li>
             </ul>
         </nav>
     </header>
