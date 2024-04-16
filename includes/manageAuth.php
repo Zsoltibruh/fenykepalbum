@@ -14,6 +14,11 @@ if (isset($_POST["signup"])) {
         exit();
     }
     
+    if (nameExists($conn, $username, $email)) {
+        header("location: ../signup.php?error=usernametaken");
+        exit();
+    }
+
     if (invalidEmail($email)) {
         header("location: ../signup.php?error=invalidemail");
         exit();
@@ -24,34 +29,24 @@ if (isset($_POST["signup"])) {
         exit();
     }
 
-    if (nameExists($kapcs,$username, $email)) {
-        header("location: ../signup.php?error=nametaken");
-        exit();
-    }
-
-    createUser($kapcs, $username, $email, $password);
+    createUser($conn, $username, $email, $password);
 
 } else{
-    header("location: ../index.php");
+    header("location: ../login.php");
     exit();
 }
 
 //Bejelentkezés kezelése
 if (isset($_POST["login"])) {
-    $username = $_POST["login"];
+    $username = $_POST["username"];
     $password = $_POST["password"];
-
-    if (invalidEmail($email)) {
-        header("location: ../signup.php?error=invalidemail");
-        exit();
-    }
 
     if (emptyInputLogin($username,$password)) {
         header("location: ../index.php?error=emptyinput");
         exit();
     }
 
-    loginUser($kapcs, $username, $password);
+    loginUser($conn, $username, $password);
     exit();
 } else{
     header("location: ../index.php");

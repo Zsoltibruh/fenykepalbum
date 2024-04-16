@@ -7,9 +7,21 @@ function emptyInputSignup($username,$email,$password,$repassword){
     return $result;
 }
 
-function nameExists($kapcs, $username, $email){
-    //TODO: Dobjon hibát, ha már létezik a felhasználónév
+function nameExists($conn, $username){
+    try {
+        $neptun = "C##D7YP5C";
+        $query = "SELECT * FROM $neptun.felhasznalo WHERE felhasznalonev = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(1, $username);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (PDOException $e) {
+        return false;
+    }
 }
+
 
 function invalidEmail($email){
     $result = false;
@@ -27,8 +39,17 @@ function passNotMatches($password, $repassword){
     return $result;
 }
 
-function createUser($kapcs, $username, $email, $password){
-    //TODO: Felhasználó létrehozásának megvalósítása
+function createUser($conn, $username, $email, $password){
+    $neptun = "C##D7YP5C";
+    $query = "INSERT INTO $neptun.felhasznalo VALUES(?,?,?)";
+
+    $hashpass = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(1, $username);
+    $stmt->bindParam(2, $email);
+    $stmt->bindParam(3, $hashpass);
+    $stmt->execute();
+
     header("location: ../index.php?success=signupsuccess");
     exit();
 }
@@ -41,25 +62,24 @@ function emptyInputLogin($username,$password){
     return $result;
 }
 
-function loginUser($kapcs, $username, $password){
-    $usernameExists = nameExists($kapcs, $username, $username);
+function loginUser($conn, $username, $password){
+    $usernameExists = nameExists($conn, $username, $username);
 
     if ($usernameExists === false) {
-        header("location: ../index.php?error=namealreadytaken");
+        header("location: ../login.php?error=nametaken");
         exit();
     }
 
     $checkpassword = password_verify($password, $usernameExists["jelszo"]);
 
     if ($checkpassword === false) {
-        header("location: ../index.php?error=wrongpassword");
+        header("location: ../login.php?error=wrongpassword");
         exit();
     }
-    else if($checkpassword === true){
+    else {
         session_start();
-        $_SESSION["username"] = $usernameExists["username"];
-        header("location: ../index.html");
+        $_SESSION["felhasznalonev"] = $usernameExists["felhasznalonev"];
+        header("location: ../index.php");
         exit();
     } 
-
 }

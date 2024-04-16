@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE php>
 <php lang="hu">
 
@@ -22,7 +26,14 @@
     </header>
     <main>
         <div id="container">
-            <h1>Sia!</h1>
+            <?php
+            if (isset($_SESSION["felhasznalonev"])) {
+                $username = $_SESSION["felhasznalonev"];
+                echo "<h1>Szia, $username!</h1>";
+            } else {
+                echo "<h1>Szia!</h1>";
+            }
+            ?>
         </div>
     </main>
     <footer>
