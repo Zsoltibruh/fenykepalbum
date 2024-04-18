@@ -2,7 +2,6 @@
 require('dbconnect.php');
 require('func.php');
 
-//Regisztráció kezelése
 if (isset($_POST["signup"])) {
     $username = $_POST["username"];
     $email = $_POST["email"];
@@ -33,17 +32,5 @@ if (isset($_POST["signup"])) {
 
 } else{
     header("location: ../login.php");
-    exit();
-}
-
-//Bejelentkezés kezelése
-if (isset($_POST["login"])) {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    loginUser($conn, $username, $password);
-    exit();
-} else{
-    header("location: ../login.php/unkownerror");
     exit();
 }

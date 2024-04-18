@@ -23,15 +23,15 @@
     </header>
     <main>
         <div id="container">
-            <form action="includes/manageAuth.php" method="POST" id="authform">
+            <form action="includes/manageSignup.php" method="POST" id="authform">
                 <label for="username">Felhasználónév</label>
                 <input type="text" name="username" id="username" required>
                 <label for="email">E-mail cím</label>
                 <input type="email" name="email" id="email" required>
                 <label for="password">Jelszó</label>
-                <input type="password" name="password" id="password" required minlength="12">
+                <input type="password" name="password" id="password" required>
                 <label for="repassword">Jelszó újra</label>
-                <input type="password" name="repassword" id="repassword" required minlength="12">
+                <input type="password" name="repassword" id="repassword" required>
                 <div>
                     <input type="submit" value="Regisztráció" name="signup">
                 </div>

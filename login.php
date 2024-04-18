@@ -23,7 +23,7 @@
     </header>
     <main>
         <div id="container">
-            <form action="includes/manageAuth.php" method="POST" id="authform">
+            <form action="includes/manageLogin.php" method="POST" id="authform">
                 <label for="username">Felhasználónév</label>
                 <input type="text" name="username" id="username" required>
                 <label for="password">Jelszó</label>

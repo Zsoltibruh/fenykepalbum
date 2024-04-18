@@ -41,7 +41,7 @@ function passNotMatches($password, $repassword){
 
 function createUser($conn, $username, $email, $password){
     $neptun = "C##D7YP5C";
-    $query = "INSERT INTO $neptun.felhasznalo VALUES(?,?,?)";
+    $query = "INSERT INTO $neptun.felhasznalo VALUES(?,?,?, 0)";
 
     $hashpass = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conn->prepare($query);
@@ -63,13 +63,14 @@ function emptyInputLogin($username,$password){
 }
 
 function loginUser($conn, $username, $password){
-    $query = "SELECT * FROM felhasznalo WHERE felhasznalonev = ?";
+    $neptun = "C##D7YP5C";
+    $query = "SELECT * FROM $neptun.felhasznalo WHERE felhasznalonev = ?";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(1, $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $checkpassword = password_verify($password, $user['jelszo']);
+    $checkpassword = password_verify($password, $user['JELSZO']);
 
     if ($checkpassword === false) {
         header("location: ../login.php?error=wrongpassword");
@@ -77,7 +78,7 @@ function loginUser($conn, $username, $password){
     }
     else {  
         session_start();
-        $_SESSION["felhasznalonev"] = $user['felhasznalonev'];
+        $_SESSION["felhasznalonev"] = $user['FELHASZNALONEV'];
         header("location: ../index.php");
         exit();
     } 

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE php>
 <php lang="hu">
 
@@ -27,7 +31,6 @@
                     <input type="submit" name="ujalbum" value="Új album létrehozása">
                     <?php
                     include 'includes/dbconnect.php';
-                    $felhnev = 'Vargavirag';
                     if (isset($_POST['ujalbum'])) {
                         echo "Album neve: <input type='text' name='nev'><br>";
                         echo "<input type='submit' name='letrehoz' value='Létrehozás'>";
@@ -36,20 +39,24 @@
                         if (isset($_POST['letrehoz'])) {
                             $neptun = "C##D7YP5C";
                             $query = "insert into $neptun.album VALUES(?,?)";
-                            $id = 20;
                             $nev = $_POST["nev"];
+                            $album = "SELECT Max(id)+1 AS ALBUMID FROM " . $neptun . ".album";
+                            $album_id = $conn->prepare($album);
+                            $album_id->execute();
+                
+                            $id = $album_id->fetch(PDO::FETCH_ASSOC);
                         
                             $stmt = $conn->prepare($query);
-                            $stmt->bindParam(1, $id);
+                            $stmt->bindParam(1, $id["ALBUMID"]);
                             $stmt->bindParam(2, $nev);
                             $stmt->execute();
 
-/*                             $query2 = "insert into $neptun.albumja VALUES(?,?)";
+                            $query2 = "INSERT INTO $neptun.albumja VALUES(?,?)";
                         
-                            $stmt2 = $conn->prepare($query);
-                            $stmt2->bindParam(1, $result["id"]);
-                            $stmt2->bindParam(2, $felhnev);
-                            $stmt2->execute(); */
+                            $stmt2 = $conn->prepare($query2);
+                            $stmt2->bindParam(1, $id["ALBUMID"]);
+                            $stmt2->bindParam(2, $_SESSION["felhasznalonev"]);
+                            $stmt2->execute();
                         
                             header("location: albums.php?success=uploadsuccess");
                             exit();
@@ -59,7 +66,7 @@
                     $neptun = "C##D7YP5C";
                     $query = "SELECT * FROM $neptun.album INNER JOIN $neptun.albumja ON album.id = albumja.id INNER JOIN $neptun.felhasznalo on albumja.felhasznalonev = felhasznalo.felhasznalonev WHERE felhasznalo.felhasznalonev LIKE ?";
                     $stmt = $conn->prepare($query);
-                    $stmt->bindParam(1, $felhnev);
+                    $stmt->bindParam(1, $_SESSION["felhasznalonev"]);
                     $stmt->execute();
 
 
