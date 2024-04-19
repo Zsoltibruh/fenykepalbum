@@ -84,10 +84,12 @@ session_start();
 
                     if (isset($_POST['torol'])) {
                         $felt = $_POST['hiddentorol'];
-                        $query = "DELETE FROM $neptun.album WHERE ID = ?";
+                        $query = "DELETE FROM $neptun.albumja WHERE ID = ?";
                         $stmt = $conn->prepare($query);
                         $stmt->bindParam(1, $felt, PDO::PARAM_INT);
                         $stmt->execute();
+
+                        header("location: albums.php?success=delete");
                     }
 
                     if (isset($_GET["success"]))
@@ -95,6 +97,10 @@ session_start();
                         if ($_GET["success"] == "uploadsuccess")
                         {
                             echo '<p>Album létrehozva!</p>';
+                        }
+                        if ($_GET["success"] == "delete")
+                        {
+                            echo '<p>Album törölve!</p>';
                         }
                     }
                     ?>
