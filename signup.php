@@ -14,7 +14,7 @@
             <ul>
                 <li><a href="index.php">Főoldal</a></li>
                 <li><a href="login.php">Bejelentkezés</a></li>
-                <li><a href="signup.php">Regisztráció</a></li>
+                <li><a href="signup.php" class="active">Regisztráció</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>
                 <li><a href="albums.php">Albumok</a></li>
                 <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
@@ -33,7 +33,7 @@
                 <label for="repassword">Jelszó újra</label>
                 <input type="password" name="repassword" id="repassword" required>
                 <div>
-                    <input type="submit" value="Regisztráció" name="signup">
+                    <input type="submit" value="Regisztráció" name="signup" class="bttn">
                 </div>
                 <?php
             if (isset($_GET["error"]))

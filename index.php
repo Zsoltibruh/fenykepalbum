@@ -16,7 +16,7 @@ session_start();
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Főoldal</a></li>
+                <li><a href="index.php" class="active">Főoldal</a></li>
                 <li><a href="login.php">Bejelentkezés</a></li>
                 <li><a href="signup.php">Regisztráció</a></li>
                 <li><a href="upload.php">Feltöltés</a></li>

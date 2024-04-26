@@ -9,6 +9,7 @@ session_start();
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Fényképalbum</title>
     </head>
 
@@ -33,7 +34,7 @@ session_start();
                     include 'includes/dbconnect.php';
                     if (isset($_POST['ujalbum'])) {
                         echo "Album neve: <input type='text' name='nev'><br>";
-                        echo "<input type='submit' name='letrehoz' value='Létrehozás'>";
+                        echo "<input type='submit' name='letrehoz' value='Létrehozás' class='bttn'>";
                     }
 
                         if (isset($_POST['letrehoz'])) {
@@ -75,9 +76,9 @@ session_start();
                         echo "<div class='card'>";
                         echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
                         echo "<div class='button-container'>";
-                        echo "<input type='submit' name='torol' value='Törlés'>";
+                        echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
                         echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
-                        echo "<input type='submit' name='szerkeszt' value='Szerkesztés'>";
+                        echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
                         echo "</div>";
                         echo "</div>";
                     }
