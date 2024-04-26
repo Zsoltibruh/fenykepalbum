@@ -30,6 +30,11 @@ nav>ul {
     list-style-type: none;
 }
 
+li{
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
 li>a {
     text-decoration: none;
     color: #393E46;
@@ -40,10 +45,9 @@ li>a {
     border-bottom: 2px #EEEEEE solid;
 }
 
-li>a:hover {
+li:hover {
     text-shadow: 1.2px 1.2px #EEEEEE;
-    font-size: 110%;
-    transition: 0.3s;
+    transform: scale(1.1);
 }
 
 #container {
@@ -89,11 +93,12 @@ input, select {
     border-radius: 7px;
     font-weight: bold;
     box-shadow: 3px 3px #EEEEEE;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .bttn:hover {
     size: 110%;
-    transition: 0.2s;
     transform: scale(1.1)
 }
 
