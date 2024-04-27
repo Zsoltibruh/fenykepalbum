@@ -15,27 +15,17 @@ session_start();
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="index.php" class="active">Főoldal</a></li>
-                <li><a href="login.php">Bejelentkezés</a></li>
-                <li><a href="signup.php">Regisztráció</a></li>
-                <li><a href="upload.php">Feltöltés</a></li>
-                <li><a href="albums.php">Albumok</a></li>
-                <li><a href="photos.php">Fényképek</a></li>
-                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI?</a></li>
+            <ul class="nav-index">
+                <div class="nav-auth">
+                    <li><a href="login.php">Bejelentkezés</a></li>
+                    <li><a href="signup.php">Regisztráció</a></li>
+                </div>
             </ul>
         </nav>
     </header>
     <main>
-        <div id="container">
-            <?php
-            if (isset($_SESSION["felhasznalonev"])) {
-                $username = $_SESSION["felhasznalonev"];
-                echo "<h1>Szia, $username!</h1>";
-            } else {
-                echo "<h1>Szia!</h1>";
-            }
-            ?>
+        <div id="index-container">
+
         </div>
     </main>
     <footer>

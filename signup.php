@@ -11,13 +11,11 @@
 <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="index.php">Főoldal</a></li>
-                <li><a href="login.php">Bejelentkezés</a></li>
-                <li><a href="signup.php" class="active">Regisztráció</a></li>
-                <li><a href="upload.php">Feltöltés</a></li>
-                <li><a href="albums.php">Albumok</a></li>
-                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
+            <ul class="nav-index">
+                <div class="nav-auth">
+                    <li><a href="login.php">Bejelentkezés</a></li>
+                    <li><a href="signup.php" class="active">Regisztráció</a></li>
+                </div>
             </ul>
         </nav>
     </header>

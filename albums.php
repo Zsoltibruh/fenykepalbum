@@ -15,20 +15,24 @@ session_start();
 
     <body>
         <header>
-            <nav>
-                <ul>
-                    <li><a href="index.php">Főoldal</a></li>
-                    <li><a href="login.php">Bejelentkezés</a></li>
-                    <li><a href="signup.php">Regisztráció</a></li>
-                    <li><a href="upload.php">Feltöltés</a></li>
-                    <li><a href="albums.php">Albumok</a></li>
-                    <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI?</a></li>
-                </ul>
-            </nav>
+        <nav>
+            <ul>
+                <div class="nav-auth">
+                    <li><a href="includes/logout.php">Kijelentkezés</a></li>
+                </div>
+            </ul>
+        </nav>
         </header>
         <main>
             <div id="container">
                 <form method="post" id="authform">
+                <?php
+                if (isset($_GET["success"])) {
+                    if ($_GET["success"] == "delete") {
+                        echo '<p>Album sikeresen törölve!</p>';
+                    }
+                }
+                ?>
                     <input type="submit" name="ujalbum" value="Új album létrehozása">
                     <?php
                     include 'includes/dbconnect.php';
@@ -74,12 +78,12 @@ session_start();
                     // Eredmények kiolvasása
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<div class='card'>";
-                        echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
-                        echo "<div class='button-container'>";
-                        echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
-                        echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
-                        echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
-                        echo "</div>";
+                            echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
+                            echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
+                            echo "<div class='button-container'>";
+                                echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
+                                echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
+                            echo "</div>";
                         echo "</div>";
                     }
 

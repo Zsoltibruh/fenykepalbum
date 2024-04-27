@@ -79,7 +79,17 @@ function loginUser($conn, $username, $password){
     else {  
         session_start();
         $_SESSION["felhasznalonev"] = $user['FELHASZNALONEV'];
-        header("location: ../index.php");
+        header("location: ../albums.php");
         exit();
     } 
+}
+
+function deleteAlbum($conn, $albumID) {
+    $neptun = "C##D7YP5C";
+    $query = "DELETE * FROM $neptun.albumja WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(1, $albumID);
+    $stmt->execute();
+    
+    header("location: albums.php?success=delete");
 }
