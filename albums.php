@@ -23,6 +23,7 @@ session_start();
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
+                    <li><a href="home.php">Home</a></li>
                     <li><a href="#">Profil?</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>

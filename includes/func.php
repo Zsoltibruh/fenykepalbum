@@ -1,5 +1,6 @@
 <?php
-function emptyInputSignup($username,$email,$password,$repassword){
+function emptyInputSignup($username, $email, $password, $repassword)
+{
     $result = false;
     if (empty($username) || empty($email) || empty($password) || empty($repassword)) {
         $result = true;
@@ -7,7 +8,8 @@ function emptyInputSignup($username,$email,$password,$repassword){
     return $result;
 }
 
-function nameExists($conn, $username){
+function nameExists($conn, $username)
+{
     try {
         $neptun = "C##D7YP5C";
         $query = "SELECT * FROM $neptun.felhasznalo WHERE felhasznalonev = ?";
@@ -23,7 +25,8 @@ function nameExists($conn, $username){
 }
 
 
-function invalidEmail($email){
+function invalidEmail($email)
+{
     $result = false;
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $result = true;
@@ -31,7 +34,8 @@ function invalidEmail($email){
     return $result;
 }
 
-function passNotMatches($password, $repassword){
+function passNotMatches($password, $repassword)
+{
     $result = false;
     if ($password !== $repassword) {
         $result = true;
@@ -39,7 +43,8 @@ function passNotMatches($password, $repassword){
     return $result;
 }
 
-function createUser($conn, $username, $email, $password){
+function createUser($conn, $username, $email, $password)
+{
     $neptun = "C##D7YP5C";
     $query = "INSERT INTO $neptun.felhasznalo VALUES(?,?,?, 0)";
 
@@ -54,7 +59,8 @@ function createUser($conn, $username, $email, $password){
     exit();
 }
 
-function emptyInputLogin($username,$password){
+function emptyInputLogin($username, $password)
+{
     $result = false;
     if (empty($username) || empty($password)) {
         $result = true;
@@ -62,7 +68,8 @@ function emptyInputLogin($username,$password){
     return $result;
 }
 
-function loginUser($conn, $username, $password){
+function loginUser($conn, $username, $password)
+{
     $neptun = "C##D7YP5C";
     $query = "SELECT * FROM $neptun.felhasznalo WHERE felhasznalonev = ?";
     $stmt = $conn->prepare($query);
@@ -75,21 +82,84 @@ function loginUser($conn, $username, $password){
     if ($checkpassword === false) {
         header("location: ../login.php?error=wrongpassword");
         exit();
-    }
-    else {  
+    } else {
         session_start();
         $_SESSION["felhasznalonev"] = $user['FELHASZNALONEV'];
         header("location: ../albums.php");
         exit();
-    } 
+    }
 }
 
-function deleteAlbum($conn, $albumID) {
+function deleteAlbum($conn, $albumID)
+{
     $neptun = "C##D7YP5C";
     $query = "DELETE * FROM $neptun.albumja WHERE id = ?";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(1, $albumID);
     $stmt->execute();
-    
+
     header("location: albums.php?success=delete");
 }
+
+
+function allCommentList($conn, $pic_id)
+{
+    $neptun = "c##d7yp5c";
+    $query = "SELECT KOMMENTID,FELHASZNALONEV,SZOVEG FROM " . $neptun . ".komment WHERE KEPEKID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(1, $pic_id);
+    $stmt->execute();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+
+        <p id="commentname"> <?php print_r($row['FELHASZNALONEV']); ?> </p>
+        <p id="commenttext"> <?php print_r($row['SZOVEG']); ?> </p>
+
+    <?php endwhile ?>
+
+
+    <form action="" method="POST">
+        <input type="hidden" name="comment_hidden" value='<?php print $pic_id ?>'>
+        <input type="text" name="comment_text" id="" class = "comment-text" placeholder="Comment...">
+        <input type="submit" value="✔" class = "comment-btn" name="comment-btn">
+    </form>
+<?php
+
+}
+
+function setComment($conn, $pic_id) {
+    $neptun = "c##d7yp5c";
+
+    if (isset($_POST["comment-btn"])) {
+
+        if($_POST["comment_text"] == ""){
+            return;
+        }
+
+        $comment_query = "SELECT Max(kommentid)+1 AS NEXTID FROM " . $neptun . ".komment";
+        $comment_id = $conn->prepare($comment_query);
+        $comment_id->execute();
+
+        $row2 = $comment_id->fetch(PDO::FETCH_ASSOC);
+
+        $username = $_SESSION["felhasznalonev"];
+        $comment_text = $_POST['comment_text'];
+
+        $query2 = "INSERT INTO " . $neptun . ".komment VALUES (?,?,?,?)";
+        $stmt2 = $conn->prepare($query2);
+        $stmt2->bindParam(1, $row2['NEXTID']);
+        $stmt2->bindParam(2, $username);
+        $stmt2->bindParam(3, $pic_id);
+        $stmt2->bindParam(4, $comment_text);
+        $stmt2->execute();
+
+        $query3 = "INSERT INTO " . $neptun . ".MELYIK_KEP VALUES (?,?)";
+        $stmt3 = $conn->prepare($query3);
+        $stmt3->bindParam(1, $pic_id);
+        $stmt3->bindParam(2, $row2['NEXTID']);
+        $stmt3->execute();
+
+        header("Refresh:0");
+    }
+}
+?>

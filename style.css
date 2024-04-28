@@ -175,14 +175,6 @@ footer {
     margin-top: 20px;
 }
 
-#commentname {
-    font-weight: bold;
-}
-
-#commenttext {
-    padding-left: 10px;
-}
-
 input {
     font-size: large;
 }
@@ -192,4 +184,12 @@ input {
     font-size: larger;
     font-weight: bold;
     padding: 3px;
+}
+
+.comment-text{
+    width: 500px;
+}
+
+.comment-btn{
+    width: 50px;
 }
