@@ -1,5 +1,5 @@
 <!DOCTYPE php>
-<php lang="hu">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,11 @@
 <body>
     <header>
         <nav>
+            <div class="nav-back">
+                <ul>
+                    <li><a href="index.php">Vissza</a></li>
+                </ul>
+            </div>
             <ul class="nav-index">
                 <div class="nav-auth">
                     <li><a href="login.php">Bejelentkezés</a></li>
@@ -62,4 +67,4 @@
     </footer>
 </body>
 
-</php>
+</html>

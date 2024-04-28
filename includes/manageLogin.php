@@ -9,6 +9,6 @@ if (isset($_POST["login"])) {
     loginUser($conn, $username, $password);
     exit();
 } else{
-    header("location: ../login.php/unkownerror");
+    header("location: ../login.php?error=unkownerror");
     exit();
 }

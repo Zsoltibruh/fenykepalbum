@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE php>
-<php lang="hu">
+<html lang="hu">
 
     <head>
         <meta charset="UTF-8">
@@ -14,25 +14,31 @@ session_start();
     </head>
 
     <body>
-        <header>
+    <header>
         <nav>
-            <ul>
+            <div class="nav-back">
+                <ul>
+                    <li><p>Logó?</p></li>
+                </ul>
+            </div>
+            <ul class="nav-index">
                 <div class="nav-auth">
+                    <li><a href="#">Profil?</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>
             </ul>
         </nav>
-        </header>
+    </header>
         <main>
             <div id="container">
                 <form method="post" id="authform">
-                <?php
-                if (isset($_GET["success"])) {
-                    if ($_GET["success"] == "delete") {
-                        echo '<p>Album sikeresen törölve!</p>';
+                    <?php
+                    if (isset($_GET["success"])) {
+                        if ($_GET["success"] == "delete") {
+                            echo '<p>Album sikeresen törölve!</p>';
+                        }
                     }
-                }
-                ?>
+                    ?>
                     <input type="submit" name="ujalbum" value="Új album létrehozása">
                     <?php
                     include 'includes/dbconnect.php';
@@ -109,9 +115,7 @@ session_start();
                         }
                     }
                     ?>
-                    
-
-                </form>
+                    </form>
             </div>
         </main>
         <footer>
@@ -119,4 +123,4 @@ session_start();
         </footer>
     </body>
 
-</php>
+</html>

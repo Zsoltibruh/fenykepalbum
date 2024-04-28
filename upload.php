@@ -23,10 +23,23 @@
     </header>
     <main>
         <div id="container">
-            <form action="" method="POST" id="image--upload">
-                <label for="image">Kép feltöltése: </label>
+            <form action="includes/fileUpload.php" method="POST" id="image--upload">
+                <h1>Kép feltötlése</h1> <br>
+                <hr>
                 <input type="file" name="image" id="image" accept="image/*"> <br> <br>
                 <input type="submit" value="Feltöltés" name="upload">
+                <?php
+                if(isset($_GET["success"])) {
+                    if ($_GET["success"] == "upload") {
+                        echo '<p>Kép sikeresen feltöltve!</p>';
+                    }
+                }
+                if(isset($_GET["error"])) {
+                    if ($_GET["error"] == "emptyinput") {
+                        echo '<h3>Semmit nem lehet feltölteni!</h3>';
+                    }
+                }
+                ?>
             </form>
         </div>
     </main>

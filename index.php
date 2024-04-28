@@ -3,13 +3,22 @@ session_start();
 ?>
 
 <!DOCTYPE php>
-<php lang="hu">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Fényképalbum</title>
+    <style>
+        body {
+            transition: 0.5s ease-in-out;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-image: url("img/hatter3.jpg");
+        }
+    </style>
 </head>
 
 <body>
@@ -24,13 +33,9 @@ session_start();
         </nav>
     </header>
     <main>
-        <div id="index-container">
-
-        </div>
     </main>
-    <footer>
-        <h1>Az oracle lyo</h1>
-    </footer>
+
+    <script src="index.js"></script>
 </body>
 
-</php>
+</html>
