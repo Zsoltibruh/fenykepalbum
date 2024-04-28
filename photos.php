@@ -88,12 +88,12 @@
             ?>
 
             <?php
-
-            $query = "SELECT * FROM kepek INNER JOIN tartalmazza ON kepek.id = tartalmazza.id 
-                INNER JOIN album on album.ID = tartalmazza.albumid 
-                INNER JOIN albumja on albumja.id = album.id 
-                INNER JOIN felhasznalo on felhasznalo.felhasznalonev = albumja.felhasznalonev 
-                WHERE kepek.felhasznalonev LIKE  ?";
+            $query = "SELECT * FROM $neptun.KEPEK 
+                INNER JOIN $neptun.tartalmazza ON kepek.id = tartalmazza.id 
+                INNER JOIN $neptun.album on album.ID = tartalmazza.albumid 
+                INNER JOIN $neptun.albumja on albumja.id = album.id 
+                INNER JOIN $neptun.felhasznalo on felhasznalo.felhasznalonev = albumja.felhasznalonev                
+                WHERE kepek.felhasznalonev LIKE ?;";
             $stmt = $conn->prepare($query);
             $stmt->bindParam(1, $_SESSION["felhasznalonev"]);
             $stmt->execute();
