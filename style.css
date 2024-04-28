@@ -95,7 +95,7 @@ main {
     text-shadow: 3px 3px #222831;
 }
 
-input,
+input[type="submit"],
 select {
     width: 100%;
     padding: 10px;
@@ -158,7 +158,6 @@ footer {
     color: #393E46;
     border: 3px solid #EEEEEE;
     text-shadow: 1px 1px #EEEEEE;
-    background-image: url("img/kachow.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -167,6 +166,12 @@ footer {
     border-radius: 5px;
     padding: 20px;
     margin: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+.card:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .button-container {
