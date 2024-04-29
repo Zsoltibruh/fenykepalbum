@@ -37,11 +37,6 @@ session_start();
             <form method="post" id="authform">
                 <?php
                 require("includes/func.php");
-                if (isset($_GET["success"])) {
-                    if ($_GET["success"] == "delete") {
-                        echo '<p>Album sikeresen törölve!</p>';
-                    }
-                }
                 ?>
                 <input type="submit" name="ujalbum" value="Új album létrehozása">
                 <?php
@@ -87,16 +82,20 @@ session_start();
 
                 // Eredmények kiolvasása
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $query1 = "SELECT kep FROM kepek INNER JOIN tartalmazza ON kepek.id = tartalmazza.id 
-                    INNER JOIN album on album.ID = tartalmazza.albumid 
-                    WHERE album.id LIKE ? FETCH FIRST 1 ROWS";
+                    $neptun = "C##D7YP5C";
+                    $query1 = "SELECT kep FROM $neptun.kepek 
+                    INNER JOIN $neptun.tartalmazza ON kepek.ID = tartalmazza.ID 
+                    INNER JOIN $neptun.album on album.ID = tartalmazza.albumid 
+                    WHERE album.ID = ? FETCH FIRST 1 ROWS ONLY";
                     $stmt1 = $conn->prepare($query1);
                     $stmt1->bindParam(1, $row['ID']);
                     $stmt1->execute();
+
+                    $result = $stmt1->fetch(PDO::FETCH_ASSOC);
                     
-                    if ($empty($stmt1)) {
-                        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<div class='card' style='background-image: url(img/kachow.png;)'>>";
+                    if (empty($result)) {
+                        while ($row1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<div class='card no-picture'>";
                             echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
                             echo "<div class='button-container'>";
                             echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
@@ -136,15 +135,19 @@ session_start();
                         echo '<p>Album létrehozva!</p>';
                     }
                     if ($_GET["success"] == "delete") {
-                        echo '<p>Album törölve!</p>';
+                        echo '<p>Album sikeresen törölve!</p>';
                     }
-                }
+                    }
                 ?>
             </form>
         </div>
     </main>
     <footer>
-        <h1>Ez lesz a footer</h1>
+        <a href="#">Logó?</a>
+        <a href="#">Rólunk</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Feltételek</a>
+        <a href="#">Hirdetés</a>
     </footer>
 </body>
 
