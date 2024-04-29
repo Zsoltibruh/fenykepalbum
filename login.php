@@ -67,7 +67,11 @@
         </div>
     </main>
     <footer>
-        <h1>Az oracle lyo</h1>
+        <a href="#">Logó?</a>
+        <a href="#">Rólunk</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Feltételek</a>
+        <a href="#">Hirdetés</a>
     </footer>
 </body>
 

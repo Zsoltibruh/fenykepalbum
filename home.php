@@ -48,7 +48,13 @@
 
     <?php setComment($conn, $_POST['comment_hidden']) ?>
 
-
+    <footer>
+        <a href="#">Logó?</a>
+        <a href="#">Rólunk</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Feltételek</a>
+        <a href="#">Hirdetés</a>
+    </footer>
 </body>
 
 </html>

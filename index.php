@@ -33,8 +33,20 @@ session_start();
         </nav>
     </header>
     <main>
+        <div id="welcome-card">
+            <h1>Üdvözlünk a(z) &lt;epikus oldal név&gt; oldalán!</h1>
+            <div id="welcome-text">
+            <h3>Csatlakozz a(z) &lt;epikus oldal név&gt; közösségéhez, kövess be embereket, kedvelj albumokat és képeket, feltöltött képeid rendezd albumokba, amit bárkivel megoszthatsz!</h3>
+            </div>
+        </div>
     </main>
-
+    <footer>
+        <a href="#">Logó?</a>
+        <a href="#">Rólunk</a>
+        <a href="#">ÁSZF</a>
+        <a href="#">Feltételek</a>
+        <a href="#">Hirdetés</a>
+    </footer>
     <script src="index.js"></script>
 </body>
 
