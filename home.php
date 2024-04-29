@@ -37,8 +37,7 @@
     require("includes/dbconnect.php");
     $neptun = "c##d7yp5c";
 
-    $query = "SELECT KIT FROM $neptun.koveti
-                $query = "SELECT kit FROM $neptun.koveti
+    $query = "SELECT KIT FROM $neptun.koveti                
         INNER JOIN $neptun.felhasznalo on koveti.Ki = felhasznalo.felhasznalonev  
         INNER JOIN $neptun.albumja on felhasznalo.felhasznalonev = albumja.felhasznalonev
         INNER JOIN $neptun.album on albumja.id = album.id 
