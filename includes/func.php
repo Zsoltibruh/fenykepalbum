@@ -120,16 +120,16 @@ function allCommentList($conn, $pic_id)
 
     <form action="" method="POST">
         <input type="hidden" name="comment_hidden" value='<?php print $pic_id ?>'>
-        <input type="text" name="comment_text" id="" class = "comment-text" placeholder="Comment...">
-        <input type="submit" value="✔" class = "comment-btn" name="comment-btn">
+        <input type="text" name="comment_text" id="" class="comment-text" placeholder="Comment...">
+        <input type="submit" value="✔" class="comment-btn" name="comment-btn">
     </form>
 <?php
     
 }
 
-function setComment($conn, $pic_id) {
+function setComment($conn, $pic_id)
+{
     $neptun = "c##d7yp5c";
-    
         if($_POST["comment_text"] == ""){
             return;
         }
@@ -158,5 +158,17 @@ function setComment($conn, $pic_id) {
         $stmt3->execute(); */
 
         header("Refresh:0");
+}
+
+function albumDelete($conn, $pic_id)
+{
+    $neptun = "c##d7yp5c";
+    $felt = $_POST['hiddentorol'];
+    $query = "DELETE FROM $neptun.albumja WHERE ID = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(1, $felt, PDO::PARAM_INT);
+    $stmt->execute();
+
+    header("location: ../albums.php?success=delete");
 }
 ?>

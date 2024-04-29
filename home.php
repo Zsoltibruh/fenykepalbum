@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<header>
+    <header>
         <nav>
             <div class="nav-back">
                 <ul>
@@ -20,13 +20,16 @@
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
-                    <li><a href="home.php">Home</a></li>
+                    <li><a href="#">Home</a></li>
                     <li><a href="albums.php">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>
             </ul>
         </nav>
     </header>
+    <main>
+        <div id="container">
+
 
     <?php
     require('includes/func.php');
@@ -35,6 +38,7 @@
     $neptun = "c##d7yp5c";
 
     $query = "SELECT KIT FROM $neptun.koveti
+                $query = "SELECT kit FROM $neptun.koveti
         INNER JOIN $neptun.felhasznalo on koveti.Ki = felhasznalo.felhasznalonev  
         INNER JOIN $neptun.albumja on felhasznalo.felhasznalonev = albumja.felhasznalonev
         INNER JOIN $neptun.album on albumja.id = album.id 
