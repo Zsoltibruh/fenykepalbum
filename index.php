@@ -34,9 +34,9 @@ session_start();
     </header>
     <main>
         <div id="welcome-card">
-            <h1>Üdvözlünk a(z) &lt;epikus oldal név&gt; oldalán!</h1>
+            <h1>Üdvözlünk az Image-In oldalán!</h1>
             <div id="welcome-text">
-            <h3>Csatlakozz a(z) &lt;epikus oldal név&gt; közösségéhez, kövess be embereket, kedvelj albumokat és képeket, feltöltött képeid rendezd albumokba, amit bárkivel megoszthatsz!</h3>
+            <h3>Csatlakozz az Image-In közösségéhez, kövess be embereket, kedvelj albumokat és képeket, feltöltött képeid rendezd albumokba, amit bárkivel megoszthatsz!</h3>
             </div>
         </div>
     </main>

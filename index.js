@@ -5,11 +5,13 @@ window.onload = function () {
         "hatter2.jpg",
         "hatter3.jpg",
         "hatter4.png",
-        "hatter5.png"
+        "hatter5.png",
+        "trisck2g.png",
+        "silvia.png"
     ];
 
     setInterval(changeImage, 5000);
-    function changeImage() {
+    function changeImage() {    
         let i = Math.floor((Math.random() * backgroundImg.length));
         document.body.style.backgroundImage = "url('img/" + backgroundImg[i] + "')";
     }

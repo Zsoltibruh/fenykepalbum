@@ -33,8 +33,8 @@ session_start();
         </nav>
     </header>
     <main>
-        <div id="container">
-            <form method="post" id="authform">
+        <div id="album_container">
+            <form method="post">
                 <?php
                 require("includes/func.php");
                 ?>
@@ -45,6 +45,7 @@ session_start();
                     echo "Album neve: <input type='text' name='nev'><br>";
                     echo "<input type='submit' name='letrehoz' value='Létrehozás' class='bttn'>";
                 }
+                echo "<div class='row'>";
 
                 if (isset($_POST['letrehoz'])) {
                     $neptun = "C##D7YP5C";
@@ -71,10 +72,12 @@ session_start();
                     header("location: albums.php?success=uploadsuccess");
                     exit();
                 }
-
+                echo "</form>";
                 // SQL lekérdezés előkészítése
                 $neptun = "C##D7YP5C";
-                $query = "SELECT * FROM $neptun.album INNER JOIN $neptun.albumja ON album.id = albumja.id INNER JOIN $neptun.felhasznalo on albumja.felhasznalonev = felhasznalo.felhasznalonev WHERE felhasznalo.felhasznalonev LIKE ?";
+                $query = "SELECT * FROM $neptun.album 
+                INNER JOIN $neptun.albumja ON album.id = albumja.id 
+                INNER JOIN $neptun.felhasznalo on albumja.felhasznalonev = felhasznalo.felhasznalonev WHERE felhasznalo.felhasznalonev LIKE ?";
                 $stmt = $conn->prepare($query);
                 $stmt->bindParam(1, $_SESSION["felhasznalonev"]);
                 $stmt->execute();
@@ -82,7 +85,6 @@ session_start();
 
                 // Eredmények kiolvasása
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $neptun = "C##D7YP5C";
                     $query1 = "SELECT kep FROM $neptun.kepek 
                     INNER JOIN $neptun.tartalmazza ON kepek.ID = tartalmazza.ID 
                     INNER JOIN $neptun.album on album.ID = tartalmazza.albumid 
@@ -92,44 +94,37 @@ session_start();
                     $stmt1->execute();
 
                     $result = $stmt1->fetch(PDO::FETCH_ASSOC);
-                    
+
                     if (empty($result)) {
-                        while ($row1 = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<div class='card no-picture'>";
-                            echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
-                            echo "<div class='button-container'>";
-                            echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
-                            echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
-                            echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
-                            echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
-                            echo "</div>";
-                            echo "</div>";
-                        }
-                    } else {
-                        while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<div class='card' style='background-image: url(img/local/" . $row1['kep'] . ")'>>";
-                            echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
-                            echo "<div class='button-container'>";
-                            echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
-                            echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
-                            echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
-                            echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
-                            echo "</div>";
-                            echo "</div>";
-                        }
+                        echo "<form method='post' action='includes/albumDelete.php' class='column'>";
+                        echo "<div class='card no-picture'>";
+                        echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
+                        echo "<div class='button-container'>";
+                        echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
+                        echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
+                        echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
+                        echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
+                    }
+                    if (!empty($result)) {
+                        echo "<form method='post' action='includes/albumDelete.php' class='column'>";
+                        echo "<div class='card' style='background-image: url(img/local/" . $result['KEP'] . ")'>";
+                        echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
+                        echo "<div class='button-container'>";
+                        echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
+                        echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
+                        echo "<input type='hidden' name='hiddentorol' value='" . $row['ID'] . "'>";
+                        echo "<input type='submit' name='szerkeszt' value='🖊️' class='album_bttn'>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</form>";
                     }
                 }
 
-                if (isset($_POST['torol'])) {
-                    $felt = $_POST['hiddentorol'];
-                    $query = "DELETE FROM $neptun.albumja WHERE ID = ?";
-                    $stmt = $conn->prepare($query);
-                    $stmt->bindParam(1, $felt, PDO::PARAM_INT);
-                    $stmt->execute();
 
-                    header("location: albums.php?success=delete");
-                }
-
+                echo "</div>";
                 if (isset($_GET["success"])) {
                     if ($_GET["success"] == "uploadsuccess") {
                         echo '<p>Album létrehozva!</p>';
@@ -137,9 +132,9 @@ session_start();
                     if ($_GET["success"] == "delete") {
                         echo '<p>Album sikeresen törölve!</p>';
                     }
-                    }
+                }
                 ?>
-            </form>
+
         </div>
     </main>
     <footer>

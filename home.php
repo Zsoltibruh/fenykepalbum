@@ -39,13 +39,13 @@
                 require("includes/dbconnect.php");
                 $neptun = "c##d7yp5c";
 
-                $query = "SELECT $neptun.koveti.kit FROM koveti
+                $query = "SELECT kit FROM $neptun.koveti
         INNER JOIN $neptun.felhasznalo on koveti.Ki = felhasznalo.felhasznalonev  
         INNER JOIN $neptun.albumja on felhasznalo.felhasznalonev = albumja.felhasznalonev
         INNER JOIN $neptun.album on albumja.id = album.id 
         INNER JOIN $neptun.tartalmazza on album.ID = tartalmazza.albumid 
         INNER JOIN $neptun.kepek ON kepek.id = tartalmazza.id       
-        WHERE kepek.felhasznalonev LIKE '" . $_SESSION["felhasznalonev"] . "'";
+        WHERE $neptun.kepek.felhasznalonev LIKE '" . $_SESSION["felhasznalonev"] . "'";
                 $stmt = $conn->prepare($query);
                 $stmt->execute();
 
@@ -70,13 +70,13 @@
 
                 <?php setComment($conn, $_POST['comment_hidden']) ?>
 
-    <footer>
-        <a href="#">Logó?</a>
-        <a href="#">Rólunk</a>
-        <a href="#">ÁSZF</a>
-        <a href="#">Feltételek</a>
-        <a href="#">Hirdetés</a>
-    </footer>
-</body>
+                <footer>
+                    <a href="#">Logó?</a>
+                    <a href="#">Rólunk</a>
+                    <a href="#">ÁSZF</a>
+                    <a href="#">Feltételek</a>
+                    <a href="#">Hirdetés</a>
+                </footer>
+            </body>
 
 </html>
