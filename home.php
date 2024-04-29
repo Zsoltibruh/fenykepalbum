@@ -21,7 +21,7 @@
         INNER JOIN $neptun.albumja on albumja.id = album.id 
         INNER JOIN $neptun.felhasznalo on felhasznalo.felhasznalonev = albumja.felhasznalonev
         INNER JOIN $neptun.koveti on koveti.Ki = felhasznalo.felhasznalonev                
-        WHERE kepek.felhasznalonev LIKE '".$_SESSION['felhasznalonev']."'";
+        WHERE kepek.felhasznalonev LIKE '".$_SESSION["felhasznalonev"]."'";
     $stmt = $conn->prepare($query);
     $stmt->execute();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
