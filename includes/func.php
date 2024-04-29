@@ -85,7 +85,7 @@ function loginUser($conn, $username, $password)
     } else {
         session_start();
         $_SESSION["felhasznalonev"] = $user['FELHASZNALONEV'];
-        header("location: ../albums.php");
+        header("location: ../home.php");
         exit();
     }
 }
