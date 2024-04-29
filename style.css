@@ -95,7 +95,7 @@ main {
     text-shadow: 3px 3px #222831;
 }
 
-input[type="submit"],
+input,
 select {
     width: 100%;
     padding: 10px;
