@@ -124,14 +124,12 @@ function allCommentList($conn, $pic_id)
         <input type="submit" value="✔" class = "comment-btn" name="comment-btn">
     </form>
 <?php
-
+    
 }
 
 function setComment($conn, $pic_id) {
     $neptun = "c##d7yp5c";
-
-    if (isset($_POST["comment-btn"])) {
-
+    
         if($_POST["comment_text"] == ""){
             return;
         }
@@ -153,13 +151,12 @@ function setComment($conn, $pic_id) {
         $stmt2->bindParam(4, $comment_text);
         $stmt2->execute();
 
-        $query3 = "INSERT INTO " . $neptun . ".MELYIK_KEP VALUES (?,?)";
+        /* $query3 = "INSERT INTO " . $neptun . ".MELYIK_KEP VALUES (?,?)";
         $stmt3 = $conn->prepare($query3);
         $stmt3->bindParam(1, $pic_id);
         $stmt3->bindParam(2, $row2['NEXTID']);
-        $stmt3->execute();
+        $stmt3->execute(); */
 
         header("Refresh:0");
-    }
 }
 ?>

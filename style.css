@@ -233,9 +233,9 @@ input {
 }
 
 .comment-text {
-    width: 500px;
+    width: 500px !important;
 }
 
 .comment-btn {
-    width: 50px;
+    width: 50px !important;
 }

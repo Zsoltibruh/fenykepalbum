@@ -9,6 +9,24 @@
 </head>
 
 <body>
+<header>
+        <nav>
+            <div class="nav-back">
+                <ul>
+                    <li>
+                        <p>Logó?</p>
+                    </li>
+                </ul>
+            </div>
+            <ul class="nav-index">
+                <div class="nav-auth">
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="albums.php">Albumjaim</a></li>
+                    <li><a href="includes/logout.php">Kijelentkezés</a></li>
+                </div>
+            </ul>
+        </nav>
+    </header>
 
     <?php
     require('includes/func.php');
@@ -16,7 +34,7 @@
     require("includes/dbconnect.php");
     $neptun = "c##d7yp5c";
 
-    $query = "SELECT $neptun.kit FROM koveti
+    $query = "SELECT KIT FROM $neptun.koveti
         INNER JOIN $neptun.felhasznalo on koveti.Ki = felhasznalo.felhasznalonev  
         INNER JOIN $neptun.albumja on felhasznalo.felhasznalonev = albumja.felhasznalonev
         INNER JOIN $neptun.album on albumja.id = album.id 
@@ -30,23 +48,27 @@
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
 
         <?php
-        $query2 = "SELECT * FROM $neptun.kepek WHERE felhasznalonev LIKE '?'";
+        $query2 = "SELECT * FROM $neptun.kepek WHERE felhasznalonev LIKE ?";
         $stmt2 = $conn->prepare($query2);
         $stmt2->bindParam(1, $row["KIT"]);
         $stmt2->execute();
-        while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC))
-        ?>
+        while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)): ?>
 
-        <p id="username"> <?php print_r($row2['FELHASZNALONEV']); ?> </p>
-        <img src="img/<?php print_r($row2['KEP']); ?>" alt="<?php print_r($row2['KEP']); ?>">
-        <p id="imgtitle"> <?php print_r($row2['NEV']); ?> </p>
-        <p id="imgdesc"> <?php print_r($row2['LEIRAS']); ?> </p>
+        <p id="username"> <?php echo $row2['FELHASZNALONEV']; ?> </p>
+        <img src="img/local/<?php echo $row2['KEP']; ?>" alt="<?php echo $row2['KEP']; ?>">
+        <p id="imgtitle"> <?php echo $row2['NEV']; ?> </p>
+        <p id="imgdesc"> <?php echo $row2['LEIRAS']; ?> </p>
 
         <?php allCommentList($conn, $row2['ID']); ?>
 
     <?php endwhile ?>
+    <?php endwhile ?>
 
-    <?php setComment($conn, $_POST['comment_hidden']) ?>
+   <?php
+    if (isset($_POST["comment-btn"])) {
+        setComment($conn, $_POST['comment_hidden']);
+    }  
+     ?>
 
     <footer>
         <a href="#">Logó?</a>
