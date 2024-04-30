@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
 }
 
 body {
@@ -198,6 +197,8 @@ input[type="submit"]:hover {
 
 #desc {
     font-size: 1.1rem;
+}
+
 footer {
     position: fixed;
     bottom: 0;
@@ -243,6 +244,7 @@ footer>a:hover {
     border-radius: 5px;
     padding: 10px;
     transition: 0.3s ease-in-out;
+    margin-top: 15px;
 }
 
 .card-background {
