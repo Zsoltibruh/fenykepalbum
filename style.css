@@ -316,8 +316,13 @@ input {
     padding: 3px;
 }
 
-.comment-text {
-    width: 500px !important;
+#commenttext{    
+    font-weight: normal;
+    padding-left: 10px;
+}
+
+#commentname{
+    font-weight: bolder;
 }
 
 .comment-btn {
@@ -334,11 +339,31 @@ input {
 #container-home img{
     width: 50rem;
 }
+#container-home hr{
+    border: 1px solid #393e46;
+}
 
 #imgdesc{
     margin-bottom: 20px;
+    padding-left: 10px;
 }
 
-#comment_form{
-    margin: 100px;
+#comment_element{
+    margin: 20px 0px;
+}
+
+ #comment_element hr{
+    border: 1px solid hsla(217, 10%, 25%, 0.350);
+}
+
+.post-element{
+    padding: 20px 0px;
+}
+.comment-text-box {
+    width: 500px !important; 
+}
+
+#username{
+    padding-bottom: 10px;
+    font-size: 25px;
 }
