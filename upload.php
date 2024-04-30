@@ -9,34 +9,46 @@
 </head>
 
 <body>
-    <header>
+<header>
         <nav>
-            <ul>
-                <li><a href="index.php">Főoldal</a></li>
-                <li><a href="login.php">Bejelentkezés</a></li>
-                <li><a href="signup.php">Regisztráció</a></li>
-                <li><a href="upload.php">Feltöltés</a></li>
-                <li><a href="albums.php">Albumok</a></li>
-                <li><a href="connection.php">SIKERÜLT-E CSATLAKOZNI? (KELL VAGY MEGBUKSZXDDD)</a></li>
+            <div class="nav-back">
+                <ul>
+                    <li><a href="#">LOGÓ</a></li>
+                </ul>
+            </div>
+            <ul class="nav-index">
+                <div class="nav-auth">
+                    <li><a href="albums.php">Vissza</a></li>
+                </div>
             </ul>
         </nav>
     </header>
     <main>
         <div id="container">
-            <form action="includes/fileUpload.php" method="POST" id="image--upload">
+            <form action="includes/fileUpload.php" method="POST" enctype="multipart/form-data" id="image--upload">
                 <h1>Kép feltötlése</h1> <br>
                 <hr>
                 <input type="file" name="image" id="image" accept="image/*"> <br> <br>
-                <input type="submit" value="Feltöltés" name="upload">
+                <div id="image-data">
+                    <h2>Név</h2>
+                    <input type='text' name='image-name'>
+                    <h2>Leírás</h2>
+                    <textarea id="desc" name="description" rows="5" cols="50"></textarea>
+                </div>
+                <input type="submit" value="Feltöltés" name="upload" id="upload-btn">
                 <?php
+
                 if(isset($_GET["success"])) {
-                    if ($_GET["success"] == "upload") {
-                        echo '<p>Kép sikeresen feltöltve!</p>';
-                    }
+/*                     if ($_GET["success"] == "upload") {
+                        echo "<h3>Sikeres feltöltés!</h3>";
+                    } */
                 }
                 if(isset($_GET["error"])) {
-                    if ($_GET["error"] == "emptyinput") {
+                    if ($_GET["error"] == "noimage") {
                         echo '<h3>Semmit nem lehet feltölteni!</h3>';
+                    }
+                    if ($_GET["error"] == "emptyinput") {
+                        echo '<h3>Kérjük minden mezőt töltsön ki!</h3>';
                     }
                 }
                 ?>

@@ -1,14 +1,40 @@
-body {
-    background-color: #222831;
-    color: #EEEEEE;
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
+}
+
+body {
+    background-color: #222831;
+    color: #EEEEEE;
+}
+
+footer {
+    position: fixed;
+    clear: both;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    height: 50px;
+    width: 100%;
+    background-color: #00ADB5;
+}
+
+footer>a {
+    text-decoration: none;
+    color: #393E46;
+    text-shadow: 1px 1px #EEEEEE;
+    transition: 0.3s ease-in-out;
+}
+
+footer>a:hover {
+    text-shadow: 1.2px 1.2px #EEEEEE;
+    transform: scale(1.1);
 }
 
 nav {
@@ -166,50 +192,47 @@ input[type="submit"]:hover {
     text-shadow: 3px 3px #222831;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+#image-data {
+    text-align: left;
+}
+
+#desc {
+    font-size: 1.1rem;
     padding: 5px;
-    height: 50;
-    width: 100%;
-    background-color: #00ADB5;
 }
 
-footer>a {
-    text-decoration: none;
-    color: #393E46;
-    text-shadow: 1px 1px #EEEEEE;
-    transition: 0.3s ease-in-out;
-}
-
-footer>a:hover {
-    text-shadow: 1.2px 1.2px #EEEEEE;
-    transform: scale(1.1);
+#upload-btn {
+    width: max-content;
 }
 
 .card {
     display: flex;
-    vertical-align: middle;
+    justify-content: center;
+    flex-direction: column;
+    gap: auto;
     color: #393E46;
+    background-color: #00ADB5;
     border: 3px solid #EEEEEE;
     text-shadow: 1px 1px #EEEEEE;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     width: 300px;
-    height: 200px;
+    height: 300px;
     box-shadow: 4px 4px #393E46;
     border-radius: 5px;
-    padding: 20px;
-    margin: 20px;
+    padding: 10px;
     transition: 0.3s ease-in-out;
 }
 
+.card-background {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 #album_container {
+    min-height: 100%;
     width: 50%;
     margin: auto;
     display: block;
@@ -251,15 +274,10 @@ footer>a:hover {
     background-image: url('img/no_picture.jpg');
 }
 
-.card:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
 .button-container {
     display: flex;
+    padding: 5px;
     justify-content: space-between;
-    margin-top: 20px;
 }
 
 input {
