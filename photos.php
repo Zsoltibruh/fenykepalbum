@@ -65,10 +65,7 @@
 
 
             <?php
-            $query = "SELECT kepek.* FROM $neptun.KEPEK 
-            INNER JOIN $neptun.tartalmazza ON kepek.id = tartalmazza.id 
-            INNER JOIN $neptun.album on album.ID = tartalmazza.albumid 
-            WHERE album.id LIKE ?";
+            $query = "SELECT kepek.* FROM $neptun.KEPEK WHERE album LIKE ?";
             $stmt = $conn->prepare($query);
             $stmt->bindParam(1, $_SESSION["albumid"]);
             $stmt->execute();

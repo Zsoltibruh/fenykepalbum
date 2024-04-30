@@ -86,10 +86,7 @@ session_start();
 
                 // Eredmények kiolvasása
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $query1 = "SELECT kep FROM $neptun.kepek 
-                    INNER JOIN $neptun.tartalmazza ON kepek.ID = tartalmazza.ID 
-                    INNER JOIN $neptun.album on album.ID = tartalmazza.albumid 
-                    WHERE album.ID = ? FETCH FIRST 1 ROWS ONLY";
+                    $query1 = "SELECT kep FROM $neptun.kepek WHERE album = ? FETCH FIRST 1 ROWS ONLY";
                     $stmt1 = $conn->prepare($query1);
                     $stmt1->bindParam(1, $row['ID']);
                     $stmt1->execute();

@@ -40,9 +40,7 @@
             $query = "SELECT KIT FROM $neptun.koveti                
                     INNER JOIN $neptun.felhasznalo on koveti.Ki = felhasznalo.felhasznalonev  
                     INNER JOIN $neptun.albumja on felhasznalo.felhasznalonev = albumja.felhasznalonev
-                    INNER JOIN $neptun.album on albumja.id = album.id 
-                    INNER JOIN $neptun.tartalmazza on album.ID = tartalmazza.albumid 
-                    INNER JOIN $neptun.kepek ON kepek.id = tartalmazza.id       
+                    INNER JOIN $neptun.album on albumja.id = album.id     
                     WHERE kepek.felhasznalonev LIKE '" . $_SESSION["felhasznalonev"] . "'";
             $stmt = $conn->prepare($query);
             $stmt->execute();
