@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
 }
 
 body {
@@ -56,6 +55,7 @@ footer>a:hover {
 }
 
 nav {
+    font-weight: bold;
     display: flex;
     top: 0;
     position: sticky;
@@ -201,6 +201,7 @@ select {
 input[type="submit"] {
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    box-shadow: 3px 3px #EEEEEE;
 }
 
 input[type="submit"]:hover {
@@ -214,11 +215,11 @@ input[type="submit"]:hover {
     margin-top: 2rem;
     padding: 15px;
     text-decoration: none;
-    color: #393E46;
-    background-color: #00ADB5;
     border: none;
     border-radius: 7px;
     font-weight: bold;
+    color: #393E46;
+    background-color: #00ADB5;
     box-shadow: 3px 3px #EEEEEE;
     transition: 0.3s ease-in-out;
     cursor: pointer;
@@ -230,12 +231,18 @@ input[type="submit"]:hover {
 }
 
 #image--upload {
+    margin-top: 20px;
     text-align: center;
     padding: 20px;
     border-radius: 15px;
     background-color: #393E46;
     color: #EEEEEE;
     text-shadow: 3px 3px #222831;
+}
+
+#image{
+    background-color: #222831;
+    box-shadow: 3px 3px #00ADB5;
 }
 
 #fileModal {
@@ -255,8 +262,8 @@ input[type="submit"]:hover {
 
 #desc {
     font-size: 1.1rem;
-
 }
+
 footer {
     position: fixed;
     bottom: 0;
@@ -302,6 +309,7 @@ footer>a:hover {
     border-radius: 5px;
     padding: 10px;
     transition: 0.3s ease-in-out;
+    margin-top: 15px;
 }
 
 .card-background {
@@ -350,7 +358,14 @@ footer>a:hover {
     justify-content: center;
 }
 
-
+.album-create-btn{
+    font-weight: bold;
+    color: #393E46;
+    background-color: #00ADB5;
+    box-shadow: 3px 3px #EEEEEE;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
 
 .no-picture {
     background-image: url('img/no_picture.jpg');
@@ -384,6 +399,7 @@ input {
 
 .comment-btn {
     width: 50px !important;
+    box-shadow: 3px 3px #00ADB5!important;
 }
 
 #container-home{
@@ -417,13 +433,14 @@ input {
     padding: 20px 0px;
     width: 100%;
 }
-.comment-text-box {
+.comment-text-box { 
     width: 500px !important; 
 }
 
 #username{
     padding-bottom: 10px;
     font-size: 25px;
+    font-weight: bold;
 }
 
 .like-button{

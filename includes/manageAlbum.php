@@ -6,7 +6,7 @@ require("func.php");
     } else if (isset($_POST["szerkeszt"])) {
         session_start();
         $_SESSION["albumid"] = $_POST["hiddentorol"];
-        header("location: ../upload.php");
+        header("location: ../photos.php");
     } else if (isset($_POST["keptorol"])) {
         deleteImage($conn, $_POST["hiddentorol"], $_POST["hiddennev"]);
     }

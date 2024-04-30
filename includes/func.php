@@ -208,7 +208,7 @@ function uploadImage($conn, $username, $description, $name, $filename) {
     $stmt->execute();
     
 
-    header("location: ../upload.php?success=upload");
+    header("location: ../photos.php?success=upload");
     exit();
 }
 
@@ -229,7 +229,7 @@ function deleteImage($conn, $imageID, $filename) {
         $stmt->bindParam(1, $imageID);
         $stmt->execute();
         
-        header("location: ../upload.php?success=imagedelete");
+        header("location: ../photos.php?success=imagedelete");
         exit();
     }
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
@@ -21,6 +22,7 @@
             <ul class="nav-index">
                 <div class="nav-auth">
                     <li><a href="#">Home</a></li>
+                    <li><a href="discovery.php">Felfedezés</a></li>
                     <li><a href="albums.php">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>
@@ -28,6 +30,7 @@
         </nav>
     </header>
     <main>
+        <div id="container-home">
 
         <div id="container-home">
 
@@ -41,6 +44,16 @@
                     WHERE koveti.KI LIKE '" . $_SESSION["felhasznalonev"] . "'";
             $stmt = $conn->prepare($query);
             $stmt->execute();
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+
+                <?php
+                $query2 = "SELECT * FROM $neptun.kepek WHERE felhasznalonev LIKE ?";
+                $stmt2 = $conn->prepare($query2);
+                $stmt2->bindParam(1, $row["KIT"]);
+                $stmt2->execute();
+                while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) : ?>
+                    <div class="post-element">
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
 

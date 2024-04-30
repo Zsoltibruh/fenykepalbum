@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-<!DOCTYPE php>
+<!DOCTYPE html>
 <html lang="hu">
 
 <head>
@@ -25,7 +25,8 @@ session_start();
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
-                    <li><a href="home.php">Home</a></li>
+                    <li><a href="home.php">Követések</a></li>
+                    <li><a href="discovery.php">Felfedezés</a></li>
                     <li><a href="#">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>
@@ -38,7 +39,7 @@ session_start();
                 <?php
                 require("includes/func.php");
                 ?>
-                <input type="submit" name="ujalbum" value="Új album létrehozása">
+                <input type="submit" name="ujalbum" value="Új album létrehozása" class="album-create-btn">
                 <?php
                 include 'includes/dbconnect.php';
                 if (isset($_POST['ujalbum'])) {
@@ -85,10 +86,7 @@ session_start();
 
                 // Eredmények kiolvasása
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $query1 = "SELECT kep FROM $neptun.kepek 
-                    INNER JOIN $neptun.tartalmazza ON kepek.ID = tartalmazza.ID 
-                    INNER JOIN $neptun.album on album.ID = tartalmazza.albumid 
-                    WHERE album.ID = ? FETCH FIRST 1 ROWS ONLY";
+                    $query1 = "SELECT kep FROM $neptun.kepek WHERE album = ? FETCH FIRST 1 ROWS ONLY";
                     $stmt1 = $conn->prepare($query1);
                     $stmt1->bindParam(1, $row['ID']);
                     $stmt1->execute();
