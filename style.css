@@ -387,13 +387,13 @@ input {
 }
 
 #container-home{
-    width: 50%;
-    display: block;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 3%;
 }
 
-#container-home img{
+#container-home .home-pic{
     width: 50rem;
 }
 #container-home hr{
@@ -415,6 +415,7 @@ input {
 
 .post-element{
     padding: 20px 0px;
+    width: 100%;
 }
 .comment-text-box {
     width: 500px !important; 
@@ -423,4 +424,26 @@ input {
 #username{
     padding-bottom: 10px;
     font-size: 25px;
+}
+
+.like-button{
+    float: left;   
+    width: 24px;
+    height: 24px;
+    transition: 0.3s ease-in-out;
+}
+
+.liked{
+    filter: invert(46%) sepia(85%) saturate(1653%) hue-rotate(147deg) brightness(93%) contrast(102%);
+}
+
+.like-button-div{
+    padding: 5px;
+    width: 100%;    
+    justify-content: flex-start;
+    display: flex;
+}
+
+.like-button:hover{
+    transform: scale(1.1);
 }

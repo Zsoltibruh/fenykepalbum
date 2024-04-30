@@ -101,13 +101,25 @@ function deleteAlbum($conn, $albumID)
     header("location: albums.php?success=delete");
 }
 
-function likes($conn, $pic_id){
+function likePress($conn, $pic_id, $username, bool $like){
     $neptun = "c##d7yp5c";
-    $query = "SELECT * FROM $neptun.KEDVELI WHERE felhasznalonev LIKE 'Bobytest';";
-    $stmt = $conn->prepare($query);
-    $stmt->execute();
 
-    
+    if($like){
+
+        $query = "DELETE FROM $neptun.KEDVELI WHERE felhasznalonev LIKE ? AND KEPEKID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(1, $username);
+        $stmt->bindParam(2, $pic_id);
+        $stmt->execute();
+    }else{
+
+        $query = "INSERT INTO $neptun.KEDVELI VALUES (?,?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bindParam(1, $username);
+        $stmt->bindParam(2, $pic_id);
+        $stmt->execute();
+    }
+
 }
 
 
