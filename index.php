@@ -34,14 +34,13 @@ session_start();
     </header>
     <main>
         <div id="welcome-card">
-            <h1>Üdvözlünk az Image-In oldalán!</h1>
+            <h1>Üdvözlünk az <span class="highlight-text">Image</span>-In oldalán!</h1>
             <div id="welcome-text">
-            <h3>Csatlakozz az Image-In közösségéhez, kövess be embereket, kedvelj albumokat és képeket, feltöltött képeid rendezd albumokba, amit bárkivel megoszthatsz!</h3>
+            <h3>Csatlakozz az <span class="highlight-text">Image</span>-In közösségéhez, kövess be embereket, kedvelj albumokat és képeket, feltöltött képeid rendezd albumokba, amit bárkivel megoszthatsz!</h3>
             </div>
         </div>
     </main>
     <footer>
-        <a href="#">Logó?</a>
         <a href="#">Rólunk</a>
         <a href="#">ÁSZF</a>
         <a href="#">Feltételek</a>

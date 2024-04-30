@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Home</title>
+    <title>Követések</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Követések</a></li>
                     <li><a href="discovery.php">Felfedezés</a></li>
                     <li><a href="albums.php">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
@@ -52,9 +52,9 @@
                 while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) : ?>
                     <div class="post-element">
 
-                        <p id="username"> <?php echo $row2['FELHASZNALONEV']; ?> </p>
-                        <p id="imgtitle"> <?php echo $row2['NEV']; ?> </p>
-                        <p id="imgdesc"> <?php echo $row2['LEIRAS']; ?> </p>
+                        <p class="username"> <?php echo $row2['FELHASZNALONEV']; ?> </p>
+                        <p class="imgtitle"> <?php echo $row2['NEV']; ?> </p>
+                        <p class="imgdesc"> <?php echo $row2['LEIRAS']; ?> </p>
                         <img class="home-pic" src="img/local/<?php echo $row2['KEP']; ?>" alt="<?php echo $row2['KEP']; ?>">
 
                         <?php
@@ -66,19 +66,15 @@
                         $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
 
                         if (in_array($row2['ID'], $row3)) {
-                            echo "<form method='POST' class='like-button-div'>";
+                            echo "<form method='POST' action='includes/manageLike.php' class='like-button-div'>";
+                            echo "<input type='hidden' name='id' value='".$row2['ID']."'>";
                             echo "<button type='submit' name='liked_button'><img class='like-button liked' src='img/icons/like.svg' alt='liked'></button>";
                             echo "</form>";
-                            if(isset($_POST["liked_button"])){
-                                likePress($conn, $row2['ID'], $_SESSION["felhasznalonev"], TRUE);
-                            }
                         } else {
-                            echo "<form method='POST' class='like-button-div'>";
+                            echo "<form method='POST' action='includes/manageLike.php' class='like-button-div'>";
+                            echo "<input type='hidden' name='id' value='".$row2['ID']."'>";
                             echo "<button type='submit' name='like_button'><img class='like-button' src='img/icons/like.svg' alt='liked'></button>";
                             echo "</form>";
-                            if(isset($_POST["like_button"])){
-                                likePress($conn, $row2['ID'], $_SESSION["felhasznalonev"], FALSE);
-                            }
                         }
 
                         ?>
@@ -96,7 +92,6 @@
         <script src="like.js"></script>
     </main>
     <footer>
-        <a href="#">Logó?</a>
         <a href="#">Rólunk</a>
         <a href="#">ÁSZF</a>
         <a href="#">Feltételek</a>

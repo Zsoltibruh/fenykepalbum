@@ -14,6 +14,7 @@ if (isset($_POST["upload"])) {
     $filename = basename($_FILES["image"]["name"]);
     $tempname = $_FILES["image"]["tmp_name"];
     $folder = "../img/local/".$filename;
+    $albumid = $_SESSION["albumid"];
 
     if (emptyInputUpload($desc, $name, $filename)) {
         header("location: ../upload.php?error=emptyinput");
@@ -21,6 +22,6 @@ if (isset($_POST["upload"])) {
     }
 
     if (move_uploaded_file($tempname, $folder)) {
-        uploadImage($conn, $_SESSION["felhasznalonev"], $desc, $name, $filename);
+        uploadImage($conn, $_SESSION["felhasznalonev"], $desc, $name, $filename, $albumid);
     }
 }

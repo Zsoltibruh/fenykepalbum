@@ -48,6 +48,10 @@ footer>a:hover {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
+.highlight-text {
+    color: #00ADB5;
+}
+
 .errorcode {
     color: #b50000;
     margin: 0;
@@ -240,7 +244,7 @@ input[type="submit"]:hover {
     text-shadow: 3px 3px #222831;
 }
 
-#image{
+#image {
     background-color: #222831;
     box-shadow: 3px 3px #00ADB5;
 }
@@ -358,7 +362,7 @@ footer>a:hover {
     justify-content: center;
 }
 
-.album-create-btn{
+.album-create-btn {
     font-weight: bold;
     color: #393E46;
     background-color: #00ADB5;
@@ -381,86 +385,93 @@ input {
     font-size: large;
 }
 
-#imgtitle {
+.imgtitle {
     padding-left: 10px;
     font-size: larger;
     font-weight: bold;
     padding: 3px;
 }
 
-#commenttext{    
+#commenttext {
     font-weight: normal;
     padding-left: 10px;
 }
 
-#commentname{
+#commentname {
     font-weight: bolder;
 }
 
 .comment-btn {
     width: 50px !important;
-    box-shadow: 3px 3px #00ADB5!important;
+    box-shadow: 3px 3px #00ADB5 !important;
 }
 
-#container-home{
+#container-home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 3%;
 }
 
-#container-home .home-pic{
+#container-home .home-pic {
     width: 50rem;
 }
-#container-home hr{
+
+#container-home hr {
     border: 1px solid #393e46;
 }
 
-#imgdesc{
+.imgdesc {
     margin-bottom: 20px;
     padding-left: 10px;
 }
 
-#comment_element{
+#comment_element {
     margin: 20px 0px;
 }
 
- #comment_element hr{
+#comment_element hr {
     border: 1px solid hsla(217, 10%, 25%, 0.350);
 }
 
-.post-element{
+.post-element {
     padding: 20px 0px;
     width: 100%;
 }
-.comment-text-box { 
-    width: 500px !important; 
+
+.comment-text-box {
+    width: 500px !important;
 }
 
-#username{
+.username {
     padding-bottom: 10px;
     font-size: 25px;
     font-weight: bold;
 }
 
-.like-button{
-    float: left;   
+.like-button {
+    float: left;
     width: 24px;
     height: 24px;
     transition: 0.3s ease-in-out;
 }
 
-.liked{
+.liked {
     filter: invert(46%) sepia(85%) saturate(1653%) hue-rotate(147deg) brightness(93%) contrast(102%);
 }
 
-.like-button-div{
+.like-button-div {
     padding: 5px;
-    width: 100%;    
+    width: 100%;
     justify-content: flex-start;
     display: flex;
 }
 
-.like-button:hover{
+.like-button-div>button {
+    background-color: transparent;
+    border: none;
+}
+
+.like-button:hover {
     transform: scale(1.1);
 }

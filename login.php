@@ -78,7 +78,6 @@
         </div>
     </main>
     <footer>
-        <a href="#">Logó?</a>
         <a href="#">Rólunk</a>
         <a href="#">ÁSZF</a>
         <a href="#">Feltételek</a>

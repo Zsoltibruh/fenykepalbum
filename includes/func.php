@@ -105,14 +105,12 @@ function likePress($conn, $pic_id, $username, bool $like){
     $neptun = "c##d7yp5c";
 
     if($like){
-
         $query = "DELETE FROM $neptun.KEDVELI WHERE felhasznalonev LIKE ? AND KEPEKID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $username);
         $stmt->bindParam(2, $pic_id);
         $stmt->execute();
     }else{
-
         $query = "INSERT INTO $neptun.KEDVELI VALUES (?,?)";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(1, $username);
@@ -191,20 +189,21 @@ function albumDelete($conn, $pic_id)
     header("location: ../albums.php?success=delete");
 }
 
-function uploadImage($conn, $username, $description, $name, $filename) {
+function uploadImage($conn, $username, $description, $name, $filename, $album) {
     $neptun = "c##d7yp5c";
     $maxQuery = "SELECT Max(id)+1 AS NEXTID FROM $neptun.kepek";
     $id_stmt = $conn->prepare($maxQuery);
     $id_stmt->execute();
     $ID = $id_stmt->fetch(PDO::FETCH_ASSOC);
 
-    $query = "INSERT INTO $neptun.kepek VALUES(?,?,?,?,?)";
+    $query = "INSERT INTO $neptun.kepek VALUES(?,?,?,?,?, ?)";
     $stmt = $conn->prepare($query);
     $stmt->bindParam(1, $ID["NEXTID"]);
     $stmt->bindParam(2, $username);
     $stmt->bindParam(3, $description);
     $stmt->bindParam(4, $name);
     $stmt->bindParam(5, $filename);
+    $stmt->bindParam(6, $album);
     $stmt->execute();
     
 

@@ -39,7 +39,6 @@
             ?>
 
             <?php
-            $felh = 'Bobytest';
             $query = "SELECT kepek.* FROM $neptun.KEPEK";
             $stmt = $conn->prepare($query);
             $stmt->execute();
@@ -47,10 +46,10 @@
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
                 <div class="post-element">
 
-                    <p id="username"> <?php echo $row['FELHASZNALONEV']; ?> </p>
-                    <img src="img/local/<?php echo $row['KEP']; ?>" alt="<?php echo $row['KEP']; ?>">
-                    <p id="imgtitle"> <?php echo $row['NEV']; ?> </p>
-                    <p id="imgdesc"> <?php echo $row['LEIRAS']; ?> </p>
+                    <p class="username"> <?php echo $row['FELHASZNALONEV']; ?> </p>
+                    <p class="imgtitle"> <?php echo $row['NEV']; ?> </p>
+                    <p class="imgdesc"> <?php echo $row['LEIRAS']; ?> </p>
+                    <img src="img/local/<?php echo $row['KEP']; ?>" class="home-pic" alt="<?php echo $row['KEP']; ?>">
 
                     <?php allCommentList($conn, $row['ID']); ?>
                 </div>
@@ -64,7 +63,6 @@
         </div>
     </main>
     <footer>
-        <a href="#">Logó?</a>
         <a href="#">Rólunk</a>
         <a href="#">ÁSZF</a>
         <a href="#">Feltételek</a>

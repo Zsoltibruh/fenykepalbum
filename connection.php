@@ -2,7 +2,7 @@
 require("includes/dbconnect.php");
 
 $neptun = "C##D7YP5C";
-$sth = $conn->prepare("SELECT * FROM $neptun.admin");
+$sth = $conn->prepare("SELECT * FROM $neptun.felhasznalo WHERE isAdmin = 1");
 $sth->execute();
 $result = $sth->fetchAll();
 echo '<h2>Adminok listája</h2>';
