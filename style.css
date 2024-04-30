@@ -255,11 +255,36 @@ input[type="submit"]:hover {
 
 #desc {
     font-size: 1.1rem;
+
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     padding: 5px;
 }
 
 #upload-btn {
     width: max-content;
+    height: 50;
+    width: 100%;
+    background-color: #00ADB5;
+    margin: auto;
+}
+
+footer>a {
+    text-decoration: none;
+    color: #393E46;
+    text-shadow: 1px 1px #EEEEEE;
+    transition: 0.3s ease-in-out;
+}
+
+footer>a:hover {
+    text-shadow: 1.2px 1.2px #EEEEEE;
+    transform: scale(1.1);
 }
 
 .card {
@@ -354,4 +379,23 @@ input {
 
 .comment-btn {
     width: 50px !important;
+}
+
+#container-home{
+    width: 50%;
+    display: block;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+#container-home img{
+    width: 50rem;
+}
+
+#imgdesc{
+    margin-bottom: 20px;
+}
+
+#comment_form{
+    margin: 100px;
 }
