@@ -36,6 +36,24 @@ footer>a:hover {
     transform: scale(1.1);
 }
 
+#successModal {
+    justify-self: center;
+    align-self: center;
+    padding: 5px;
+    border: 1px solid #00ADB5;
+    background-color: #00b55b;
+}
+
+#successModal::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.errorcode {
+    color: #b50000;
+    margin: 0;
+    padding: 0;
+}
+
 nav {
     display: flex;
     top: 0;
@@ -103,6 +121,9 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 15px;
     width: 33%;
 }
 
@@ -124,18 +145,43 @@ main {
 }
 
 #authform {
-    margin-top: 4rem;
+    font-size: 1.3rem;
+    align-self: center;
+    text-align: center;
     background-color: #393E46;
     border-radius: 7px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 3rem;
+    padding: 20px;
     gap: 5px;
     box-shadow: 4px 4px #00ADB5;
     color: #EEEEEE;
     text-shadow: 3px 3px #222831;
+}
+
+#authform>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#kepek {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.kep {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 250px;
 }
 
 input,
@@ -162,6 +208,7 @@ input[type="submit"]:hover {
 
 .bttn {
     display: flex;
+    justify-content: center;
     width: 15rem;
     margin-top: 2rem;
     padding: 15px;
@@ -186,9 +233,19 @@ input[type="submit"]:hover {
     padding: 20px;
     border-radius: 15px;
     background-color: #393E46;
-    box-shadow: 4px 4px #00ADB5;
     color: #EEEEEE;
     text-shadow: 3px 3px #222831;
+}
+
+#fileModal {
+    align-self: center;
+    justify-self: center;
+    border: none;
+    background-color: transparent;
+}
+
+#fileModal::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 #image-data {
@@ -233,7 +290,7 @@ footer>a:hover {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    gap: auto;
+    gap: 10px;
     color: #393E46;
     background-color: #00ADB5;
     border: 3px solid #EEEEEE;
@@ -253,7 +310,7 @@ footer>a:hover {
     height: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: contain;
 }
 
 #album_container {
@@ -293,8 +350,6 @@ footer>a:hover {
     justify-content: center;
 }
 
-
-
 .no-picture {
     background-image: url('img/no_picture.jpg');
 }
@@ -316,8 +371,13 @@ input {
     padding: 3px;
 }
 
-.comment-text {
-    width: 500px !important;
+#commenttext{    
+    font-weight: normal;
+    padding-left: 10px;
+}
+
+#commentname{
+    font-weight: bolder;
 }
 
 .comment-btn {
@@ -334,11 +394,31 @@ input {
 #container-home img{
     width: 50rem;
 }
+#container-home hr{
+    border: 1px solid #393e46;
+}
 
 #imgdesc{
     margin-bottom: 20px;
+    padding-left: 10px;
 }
 
-#comment_form{
-    margin: 100px;
+#comment_element{
+    margin: 20px 0px;
+}
+
+ #comment_element hr{
+    border: 1px solid hsla(217, 10%, 25%, 0.350);
+}
+
+.post-element{
+    padding: 20px 0px;
+}
+.comment-text-box {
+    width: 500px !important; 
+}
+
+#username{
+    padding-bottom: 10px;
+    font-size: 25px;
 }

@@ -96,7 +96,7 @@ session_start();
                     $result = $stmt1->fetch(PDO::FETCH_ASSOC);
 
                     if (empty($result)) {
-                        echo "<form method='post' action='includes/albumDelete.php' class='column'>";
+                        echo "<form method='post' action='includes/manageAlbum.php' class='column'>";
                         echo "<div class='card'>";
                         echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
                         echo "<div class='card-background no-picture'></div>";
@@ -110,10 +110,10 @@ session_start();
                         echo "</form>";
                     }
                     if (!empty($result)) {
-                        echo "<form method='post' action='includes/albumDelete.php' class='column'>";
-                        echo "<div class='card' style='background-image: url(img/local/" . $result['KEP'] . ")'>";
+                        echo "<form method='post' action='includes/manageAlbum.php' class='column'>";
+                        echo "<div class='card'>";
                         echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
-                        echo "<div class='card-background no-picture'></div>";
+                        echo "<div class='card-background' style='background-image: url(img/local/" . $result['KEP'] . ")'></div>";
                         echo "<div class='button-container'>";
                         echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
                         echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";

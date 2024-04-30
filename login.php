@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    <dialog id="successModal">
+        <h2>Sikeres regisztráció!</h2>
+    </dialog>
     <header>
         <nav>
             <div class="nav-back">
@@ -33,33 +36,41 @@
                 <input type="password" name="password" id="password" required>
                 <div>
                     <input type="submit" value="Bejelentkezés" name="login" class="bttn">
+                    <?php
+                    if (isset($_GET["error"]))
+                    {
+                        if ($_GET["error"] == "emptyinput")
+                        {
+                            echo '<p class="errorcode">Kérjük minden mezőt töltsön ki!</p>';
+                        }
+/*                         else if ($_GET["error"] == "nametaken")
+                        {
+                            echo '<p class="errorcode">Nem létező felhasználónév!</p>';
+                        } */
+                        else if ($_GET["error"] == "wrongpassword")
+                        {
+                            echo '<p class="errorcode">Helytelen jelszó!</p>';
+                        }
+                        else if ($_GET["error"] == "unkownerror")
+                        {
+                            echo '<p class="errorcode">Ismeretlen hiba!</p>';
+                        }
+                    }
+                    ?>
                 </div>
             <?php
             if (isset($_GET["success"]))
             {
                 if ($_GET["success"] == "signupsuccess")
                 {
-                    echo '<p>Sikeres regisztráció!</p>';
-                }
-            }
-
-            if (isset($_GET["error"]))
-            {
-                if ($_GET["error"] == "emptyinput")
-                {
-                    echo '<p class="errorcode">Kérjük minden mezőt töltsön ki!</p>';
-                }
-                else if ($_GET["error"] == "nametaken")
-                {
-                    echo '<p class="errorcode">Nem létező felhasználónév!</p>';
-                }
-                else if ($_GET["error"] == "wrongpassword")
-                {
-                    echo '<p class="errorcode">Helytelen jelszó!</p>';
-                }
-                else if ($_GET["error"] == "unkownerror")
-                {
-                    echo '<p class="errorcode">Ismeretlen hiba!</p>';
+                    echo "<script>
+                    let modal = document.getElementById('successModal');
+                    modal.showModal();
+                    
+                    setTimeout(() => {
+                        modal.close();
+                    }, 1000);
+                    </script>";
                 }
             }
             ?>

@@ -102,7 +102,12 @@ function deleteAlbum($conn, $albumID)
 }
 
 function likes($conn, $pic_id){
+    $neptun = "c##d7yp5c";
+    $query = "SELECT * FROM $neptun.KEDVELI WHERE felhasznalonev LIKE 'Bobytest';";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
 
+    
 }
 
 
@@ -116,17 +121,21 @@ function allCommentList($conn, $pic_id)
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
 
-        <p id="commentname"> <?php print_r($row['FELHASZNALONEV']); ?> </p>
-        <p id="commenttext"> <?php print_r($row['SZOVEG']); ?> </p>
+        <div id="comment_element">
+            <hr>
+            <p id="commentname"> <?php print_r($row['FELHASZNALONEV']); ?> </p>
+            <p id="commenttext"> <?php print_r($row['SZOVEG']); ?> </p>
+        </div>
 
     <?php endwhile ?>
 
 
     <form action="" method="POST">
         <input type="hidden" name="comment_hidden" value='<?php print $pic_id ?>'>
-        <input type="text" name="comment_text" id="" class="comment-text" placeholder="Comment...">
+        <input type="text" name="comment_text" id="" class="comment-text-box" placeholder="Comment...">
         <input type="submit" value="✔" class="comment-btn" name="comment-btn">
     </form>
+    <hr>
 <?php
     
 }
@@ -197,5 +206,19 @@ function emptyInputUpload($description, $name, $filename) {
     }
 
     return FALSE;
+}
+
+function deleteImage($conn, $imageID, $filename) {
+    if (unlink("../img/local/".$filename)) {
+        $neptun = "c##d7yp5c";
+        $query = "DELETE FROM $neptun.kepek WHERE id = ?";
+        $stmt = $conn->prepare($query);
+    
+        $stmt->bindParam(1, $imageID);
+        $stmt->execute();
+        
+        header("location: ../upload.php?success=imagedelete");
+        exit();
+    }
 }
 ?>

@@ -43,19 +43,19 @@
             {
                 if ($_GET["error"] == "emptyinput")
                 {
-                    echo '<p>Kérjük minden mezőt töltsön ki!</p>';
+                    echo '<p class="errorcode">Kérjük minden mezőt töltsön ki!</p>';
                 }
                 else if ($_GET["error"] == "usernametaken")
                 {
-                    echo '<p>Felhasználónév foglalt!</p>';
+                    echo '<p class="errorcode">Felhasználónév foglalt!</p>';
                 }
                 else if ($_GET["error"] == "invalidemail")
                 {
-                    echo '<p>Helytelen email cím!</p>';
+                    echo '<p class="errorcode">Helytelen email cím!</p>';
                 }
                 else if ($_GET["error"] == "passwordnotmatches")
                 {
-                    echo '<p>Jelszavak nem egyeznek!</p>';
+                    echo '<p class="errorcode">Jelszavak nem egyeznek!</p>';
                 }
             }
             ?>
