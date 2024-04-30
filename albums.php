@@ -34,7 +34,7 @@ session_start();
     </header>
     <main>
         <div id="album_container">
-            <form method="post">
+            <form method="post" id="album-form">
                 <?php
                 require("includes/func.php");
                 ?>
@@ -97,8 +97,9 @@ session_start();
 
                     if (empty($result)) {
                         echo "<form method='post' action='includes/albumDelete.php' class='column'>";
-                        echo "<div class='card no-picture'>";
+                        echo "<div class='card'>";
                         echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
+                        echo "<div class='card-background no-picture'></div>";
                         echo "<div class='button-container'>";
                         echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
                         echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
@@ -112,6 +113,7 @@ session_start();
                         echo "<form method='post' action='includes/albumDelete.php' class='column'>";
                         echo "<div class='card' style='background-image: url(img/local/" . $result['KEP'] . ")'>";
                         echo "<h2>" . $row['ALBUMNEV'] . "</h2>";
+                        echo "<div class='card-background no-picture'></div>";
                         echo "<div class='button-container'>";
                         echo "<input type='submit' name='megnyit' value='📖' class='album_bttn'>";
                         echo "<input type='submit' name='torol' value='🗑️' class='album_bttn'>";
@@ -134,7 +136,6 @@ session_start();
                     }
                 }
                 ?>
-
         </div>
     </main>
     <footer>

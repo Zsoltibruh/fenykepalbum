@@ -169,4 +169,33 @@ function albumDelete($conn, $pic_id)
 
     header("location: ../albums.php?success=delete");
 }
+
+function uploadImage($conn, $username, $description, $name, $filename) {
+    $neptun = "c##d7yp5c";
+    $maxQuery = "SELECT Max(id)+1 AS NEXTID FROM $neptun.kepek";
+    $id_stmt = $conn->prepare($maxQuery);
+    $id_stmt->execute();
+    $ID = $id_stmt->fetch(PDO::FETCH_ASSOC);
+
+    $query = "INSERT INTO $neptun.kepek VALUES(?,?,?,?,?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bindParam(1, $ID["NEXTID"]);
+    $stmt->bindParam(2, $username);
+    $stmt->bindParam(3, $description);
+    $stmt->bindParam(4, $name);
+    $stmt->bindParam(5, $filename);
+    $stmt->execute();
+    
+
+    header("location: ../upload.php?success=upload");
+    exit();
+}
+
+function emptyInputUpload($description, $name, $filename) {
+    if (empty($description) || empty($name) || empty($filename)) {
+        return TRUE;
+    }
+
+    return FALSE;
+}
 ?>
