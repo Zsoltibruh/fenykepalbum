@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,8 @@
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Követések</a></li>
+                    <li><a href="discovery.php">Felfedezés</a></li>
                     <li><a href="albums.php">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>
@@ -28,8 +29,7 @@
         </nav>
     </header>
     <main>
-
-    <div id="container-home">
+        <div id="container-home">
 
             <?php
             require('includes/func.php');
@@ -46,26 +46,26 @@
                     WHERE kepek.felhasznalonev LIKE '" . $_SESSION["felhasznalonev"] . "'";
             $stmt = $conn->prepare($query);
             $stmt->execute();
-    
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
-    
-                    <?php
-                    $query2 = "SELECT * FROM $neptun.kepek WHERE felhasznalonev LIKE ?";
-                    $stmt2 = $conn->prepare($query2);
-                    $stmt2->bindParam(1, $row["KIT"]);
-                    $stmt2->execute();
-                    while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) : ?>
-                        <div class="post-element">
 
-                            <p id="username"> <?php echo $row2['FELHASZNALONEV']; ?> </p>
-                            <img src="img/local/<?php echo $row2['KEP']; ?>" alt="<?php echo $row2['KEP']; ?>">
-                            <p id="imgtitle"> <?php echo $row2['NEV']; ?> </p>
-                            <p id="imgdesc"> <?php echo $row2['LEIRAS']; ?> </p>
-                        
-                            <?php allCommentList($conn, $row2['ID']); ?>
-                        </div>
-                    <?php endwhile ?>
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
+
+                <?php
+                $query2 = "SELECT * FROM $neptun.kepek WHERE felhasznalonev LIKE ?";
+                $stmt2 = $conn->prepare($query2);
+                $stmt2->bindParam(1, $row["KIT"]);
+                $stmt2->execute();
+                while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) : ?>
+                    <div class="post-element">
+
+                        <p id="username"> <?php echo $row2['FELHASZNALONEV']; ?> </p>
+                        <img src="img/local/<?php echo $row2['KEP']; ?>" alt="<?php echo $row2['KEP']; ?>">
+                        <p id="imgtitle"> <?php echo $row2['NEV']; ?> </p>
+                        <p id="imgdesc"> <?php echo $row2['LEIRAS']; ?> </p>
+
+                        <?php allCommentList($conn, $row2['ID']); ?>
+                    </div>
                 <?php endwhile ?>
+            <?php endwhile ?>
 
 
             <?php

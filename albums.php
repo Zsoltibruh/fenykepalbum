@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-<!DOCTYPE php>
+<!DOCTYPE html>
 <html lang="hu">
 
 <head>
@@ -25,7 +25,8 @@ session_start();
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
-                    <li><a href="home.php">Home</a></li>
+                    <li><a href="home.php">Követések</a></li>
+                    <li><a href="discovery.php">Felfedezés</a></li>
                     <li><a href="#">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
                 </div>
@@ -38,7 +39,7 @@ session_start();
                 <?php
                 require("includes/func.php");
                 ?>
-                <input type="submit" name="ujalbum" value="Új album létrehozása">
+                <input type="submit" name="ujalbum" value="Új album létrehozása" class="album-create-btn">
                 <?php
                 include 'includes/dbconnect.php';
                 if (isset($_POST['ujalbum'])) {
