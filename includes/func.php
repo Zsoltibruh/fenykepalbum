@@ -101,6 +101,10 @@ function deleteAlbum($conn, $albumID)
     header("location: albums.php?success=delete");
 }
 
+function likes($conn, $pic_id){
+
+}
+
 
 function allCommentList($conn, $pic_id)
 {
@@ -150,12 +154,6 @@ function setComment($conn, $pic_id)
         $stmt2->bindParam(3, $pic_id);
         $stmt2->bindParam(4, $comment_text);
         $stmt2->execute();
-
-        /* $query3 = "INSERT INTO " . $neptun . ".MELYIK_KEP VALUES (?,?)";
-        $stmt3 = $conn->prepare($query3);
-        $stmt3->bindParam(1, $pic_id);
-        $stmt3->bindParam(2, $row2['NEXTID']);
-        $stmt3->execute(); */
 
         header("Refresh:0");
 }

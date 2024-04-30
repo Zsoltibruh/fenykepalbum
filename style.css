@@ -167,7 +167,7 @@ input[type="submit"]:hover {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     display: flex;
     flex-direction: row;
@@ -177,6 +177,7 @@ footer {
     height: 50;
     width: 100%;
     background-color: #00ADB5;
+    margin: auto;
 }
 
 footer>a {
@@ -279,4 +280,23 @@ input {
 
 .comment-btn {
     width: 50px !important;
+}
+
+#container-home{
+    width: 50%;
+    display: block;
+    justify-content: center;
+    margin-bottom: 3%;
+}
+
+#container-home img{
+    width: 50rem;
+}
+
+#imgdesc{
+    margin-bottom: 20px;
+}
+
+#comment_form{
+    margin: 100px;
 }
