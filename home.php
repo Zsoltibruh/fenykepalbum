@@ -20,7 +20,7 @@
             </div>
             <ul class="nav-index">
                 <div class="nav-auth">
-                    <li><a href="#">Követések</a></li>
+                    <li><a href="#">Home</a></li>
                     <li><a href="discovery.php">Felfedezés</a></li>
                     <li><a href="albums.php">Albumjaim</a></li>
                     <li><a href="includes/logout.php">Kijelentkezés</a></li>
@@ -37,11 +37,9 @@
             session_start();
             $neptun = "c##d7yp5c";
 
-            $query = "SELECT KIT FROM $neptun.koveti                
-                    INNER JOIN $neptun.felhasznalo on koveti.Ki = felhasznalo.felhasznalonev  
-                    INNER JOIN $neptun.albumja on felhasznalo.felhasznalonev = albumja.felhasznalonev
-                    INNER JOIN $neptun.album on albumja.id = album.id     
-                    WHERE kepek.felhasznalonev LIKE '" . $_SESSION["felhasznalonev"] . "'";
+            $query = "SELECT KIT FROM koveti                
+            INNER JOIN felhasznalo on koveti.kit = felhasznalo.felhasznalonev  
+            WHERE koveti.ki LIKE '" . $_SESSION["felhasznalonev"] . "'";
             $stmt = $conn->prepare($query);
             $stmt->execute();
 
