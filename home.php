@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="hu">
-<html lang="hu">
 
 <head>
     <meta charset="UTF-8">
@@ -32,8 +31,6 @@
     <main>
         <div id="container-home">
 
-        <div id="container-home">
-
             <?php
             require('includes/func.php');
             require("includes/dbconnect.php");
@@ -44,16 +41,6 @@
                     WHERE koveti.KI LIKE '" . $_SESSION["felhasznalonev"] . "'";
             $stmt = $conn->prepare($query);
             $stmt->execute();
-
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
-
-                <?php
-                $query2 = "SELECT * FROM $neptun.kepek WHERE felhasznalonev LIKE ?";
-                $stmt2 = $conn->prepare($query2);
-                $stmt2->bindParam(1, $row["KIT"]);
-                $stmt2->execute();
-                while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) : ?>
-                    <div class="post-element">
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) : ?>
 
@@ -100,7 +87,6 @@
                 <?php endwhile ?>
             <?php endwhile ?>
 
-
             <?php
             if (isset($_POST["comment-btn"])) {
                 setComment($conn, $_POST['comment_hidden']);
@@ -118,6 +104,4 @@
     </footer>
 
 </body>
-
-
 </html>
