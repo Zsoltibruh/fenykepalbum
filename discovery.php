@@ -51,6 +51,18 @@
                     <p class="imgdesc"> <?php echo $row['LEIRAS']; ?> </p>
                     <img src="img/local/<?php echo $row['KEP']; ?>" class="home-pic" alt="<?php echo $row['KEP']; ?>">
 
+                    <?php
+                    
+                    $query3 = "SELECT COUNT(KEPEKID) AS LIKESZAM FROM $neptun.KEDVELI WHERE KEPEKID =". $row['ID'];
+                        $stmt3 = $conn->prepare($query3);
+                        $stmt3->execute();
+
+                        $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+
+                    likeButtons($conn, $_SESSION['felhasznalonev'], $row['ID'], $row3['LIKESZAM']);
+                    ?>
+
                     <?php allCommentList($conn, $row['ID']); ?>
                 </div>
             <?php endwhile ?>
@@ -58,6 +70,14 @@
             <?php
             if (isset($_POST["comment-btn"])) {
                 setComment($conn, $_POST['comment_hidden']);
+            }
+
+            if(isset($_POST['liked'])){
+                likePress($conn, $_POST['id'], $_SESSION['felhasznalonev'], TRUE);
+            }
+
+            if(isset($_POST['not_liked'])){
+                likePress($conn, $_POST['id'], $_SESSION['felhasznalonev'], FALSE);
             }
             ?>
         </div>
@@ -68,6 +88,8 @@
         <a href="#">Feltételek</a>
         <a href="#">Hirdetés</a>
     </footer>
+
+    <script src="like.js"></script>
 
 </body>
 
