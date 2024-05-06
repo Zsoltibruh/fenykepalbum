@@ -219,7 +219,7 @@ function emptyInputUpload($description, $name, $filename) {
 }
 
 function deleteImage($conn, $imageID, $filename) {
-    if (unlink("../img/local/".$filename)) {
+    if (unlink("img/local/".$filename)) {
         $neptun = "c##d7yp5c";
         $query = "DELETE FROM $neptun.kepek WHERE id = ?";
         $stmt = $conn->prepare($query);
@@ -227,7 +227,7 @@ function deleteImage($conn, $imageID, $filename) {
         $stmt->bindParam(1, $imageID);
         $stmt->execute();
         
-        header("location: ../photos.php?success=imagedelete");
+        header("location: photos.php?success=imagedelete");
         exit();
     }
 }

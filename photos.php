@@ -33,8 +33,8 @@
 
             <?php
             require('includes/func.php');
-            session_start();
             require("includes/dbconnect.php");
+            session_start();
             $neptun = "c##d7yp5c";
             ?>
 
@@ -52,10 +52,21 @@
                 <?php
                 if (isset($_GET["error"])) {
                     if ($_GET["error"] == "noimage") {
+                        echo '<br>';
                         echo '<h3>Semmit nem lehet feltölteni!</h3>';
                     }
                     if ($_GET["error"] == "emptyinput") {
                         echo '<h3>Kérjük minden mezőt töltsön ki!</h3>';
+                    }
+                    if ($_GET["error"] == "inputlength") {
+                        echo '<br>';
+                        echo '<h3>Nem megengedett beviteli hossz!</h3>';
+                    }
+                }
+                if (isset($_GET["success"])) {
+                    if ($_GET["success"] == "imagedelete") {
+                        echo '<br>';
+                        echo '<h3>Kép sikeresen törölve!</h3>';
                     }
                 }
                 ?>
@@ -79,7 +90,9 @@
             ?>
             <?php
             while ($album_row = $album_stmt->fetch(PDO::FETCH_ASSOC)) : ?>
-                <h1>Ezek itt most a <?php echo $album_row['ALBUMNEV']; ?> nevetezű albumodban található képek!</h1>
+                <?php
+                echo "<h1>Ezek itt most a ".$album_row['ALBUMNEV']." nevetezű albumodban található képek!</h1>";
+                ?>
 
             <?php
             endwhile;
@@ -89,6 +102,12 @@
 
                     <p id="username"> <?php echo $row['FELHASZNALONEV']; ?> </p>
                     <img src="img/local/<?php echo $row['KEP']; ?>" alt="<?php echo $row['KEP']; ?>">
+                    <form method="POST">
+                    <input type='submit' name='keptorol' value='🗑️' class='album_bttn'>
+                    <input type='hidden' name='hiddentorol' value="<?php echo $row['ID']; ?>">
+                    <input type='hidden' name='hiddenkep' value="<?php echo $row['KEP']; ?>">
+                    </form>
+                    <br>
                     <p id="imgtitle"> <?php echo $row['NEV']; ?> </p>
                     <p id="imgdesc"> <?php echo $row['LEIRAS']; ?> </p>
 
@@ -99,6 +118,9 @@
             <?php
             if (isset($_POST["comment-btn"])) {
                 setComment($conn, $_POST['comment_hidden']);
+            }
+            if (isset($_POST["keptorol"])) {
+                deleteImage($conn, $_POST["hiddentorol"], $_POST["hiddenkep"]);
             }
             ?>
         </div>

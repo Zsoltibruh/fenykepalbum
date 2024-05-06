@@ -5,7 +5,7 @@ session_start();
 
 if (isset($_POST["upload"])) {
     if (!isset($_FILES["image"]) || $_FILES["image"]["error"] != 0) {
-        header("location: ../upload.php?error=noimage");
+        header("location: ../photos.php?error=noimage");
         exit();
     }
 
@@ -16,8 +16,13 @@ if (isset($_POST["upload"])) {
     $folder = "../img/local/".$filename;
     $albumid = $_SESSION["albumid"];
 
+    if (strlen($name) > 30 || strlen($desc) > 1500) {
+        header("location: ../photos.php?error=inputlength");
+        exit();
+    }
+
     if (emptyInputUpload($desc, $name, $filename)) {
-        header("location: ../upload.php?error=emptyinput");
+        header("location: ../photos.php?error=emptyinput");
         exit();
     }
 
