@@ -460,18 +460,24 @@ input {
     filter: invert(46%) sepia(85%) saturate(1653%) hue-rotate(147deg) brightness(93%) contrast(102%);
 }
 
-.like-button-div {
+.like-button-form {
     padding: 5px;
     width: 100%;
     justify-content: flex-start;
     display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.like-button-div>button {
+.like-button-form>button {
     background-color: transparent;
     border: none;
 }
 
 .like-button:hover {
     transform: scale(1.1);
+}
+
+.like_count{
+    user-select: none;
 }

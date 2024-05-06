@@ -50,6 +50,7 @@
                 $stmt2->bindParam(1, $row["KIT"]);
                 $stmt2->execute();
                 while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) : ?>
+
                     <div class="post-element">
 
                         <p class="username"> <?php echo $row2['FELHASZNALONEV']; ?> </p>
@@ -58,38 +59,66 @@
                         <img class="home-pic" src="img/local/<?php echo $row2['KEP']; ?>" alt="<?php echo $row2['KEP']; ?>">
 
                         <?php
-                        $query3 = "SELECT KEPEKID FROM $neptun.KEDVELI WHERE felhasznalonev LIKE ?";
+
+                        $query3 = "SELECT COUNT(KEPEKID) AS LIKESZAM FROM $neptun.KEDVELI WHERE KEPEKID =". $row2['ID'];
                         $stmt3 = $conn->prepare($query3);
-                        $stmt3->bindParam(1, $_SESSION["felhasznalonev"]);
                         $stmt3->execute();
 
                         $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
 
-                        if (in_array($row2['ID'], $row3)) {
-                            echo "<form method='POST' action='includes/manageLike.php' class='like-button-div'>";
-                            echo "<input type='hidden' name='id' value='".$row2['ID']."'>";
-                            echo "<button type='submit' name='liked_button'><img class='like-button liked' src='img/icons/like.svg' alt='liked'></button>";
+
+                        $query4 = "SELECT KEPEKID FROM $neptun.KEDVELI WHERE felhasznalonev LIKE ?";
+                        $stmt4 = $conn->prepare($query4);
+                        $stmt4->bindParam(1, $_SESSION["felhasznalonev"]);
+                        $stmt4->execute();
+
+                        $bennevan = FALSE;
+                        while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)){
+
+                            if (in_array($row2['ID'], $row4)){
+                                $bennevan = TRUE;
+                            }
+
+                        }
+                        if($bennevan){
+                                
+                            echo "<form method='POST' class='like-button-form'>";
+                            echo "<input type='hidden' name='id' value='" . $row2['ID'] . "'>";
+                            echo "<input type='hidden' name='liked' value='" . $row2['ID'] . "'>";
+                            echo "<button type='submit' class = 'like-button'><img class='like-button liked' src='img/icons/like.svg' alt='liked'></button>";
+                            echo "<p class='like_count'>".$row3['LIKESZAM']."</p>";
                             echo "</form>";
                         } else {
-                            echo "<form method='POST' action='includes/manageLike.php' class='like-button-div'>";
-                            echo "<input type='hidden' name='id' value='".$row2['ID']."'>";
-                            echo "<button type='submit' name='like_button'><img class='like-button' src='img/icons/like.svg' alt='liked'></button>";
+
+                            echo "<form method='POST' class='like-button-form'>";
+                            echo "<input type='hidden' name='id' value='" . $row2['ID'] . "'>";
+                            echo "<input type='hidden' name='not_liked' value='" . $row2['ID'] . "'>";
+                            echo "<button type='submit' class = 'like-button'><img class='like-button' src='img/icons/like.svg' alt='liked'></button>";
+                            echo "<p class='like_count'>".$row3['LIKESZAM']."</p>";
                             echo "</form>";
                         }
-
-                        ?>
+                         ?>
                         <?php allCommentList($conn, $row2['ID']); ?>
                     </div>
                 <?php endwhile ?>
             <?php endwhile ?>
+            
 
             <?php
             if (isset($_POST["comment-btn"])) {
                 setComment($conn, $_POST['comment_hidden']);
             }
+
+            if(isset($_POST['liked'])){
+                likePress($conn, $_POST['id'], $_SESSION['felhasznalonev'], TRUE);
+            }
+
+            if(isset($_POST['not_liked'])){
+                likePress($conn, $_POST['id'], $_SESSION['felhasznalonev'], FALSE);
+            }
             ?>
+            
         </div>
-        <script src="like.js"></script>
     </main>
     <footer>
         <a href="#">Rólunk</a>
@@ -98,5 +127,8 @@
         <a href="#">Hirdetés</a>
     </footer>
 
+    <script src="like.js"></script>
+
 </body>
+
 </html>

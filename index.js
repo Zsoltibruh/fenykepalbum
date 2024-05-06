@@ -6,7 +6,6 @@ window.onload = function () {
         "hatter3.jpg",
         "hatter4.png",
         "hatter5.png",
-        "trisck2g.png",
         "silvia.png"
     ];
 

@@ -179,11 +179,10 @@ function setComment($conn, $pic_id)
 
 function albumDelete($conn, $pic_id)
 {
-    $neptun = "c##d7yp5c";
-    $felt = $_POST['hiddentorol'];
+    $neptun = "c##d7yp5c";    
     $query = "DELETE FROM $neptun.albumja WHERE ID = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bindParam(1, $felt, PDO::PARAM_INT);
+    $stmt->bindParam(1, $pic_id);
     $stmt->execute();
 
     header("location: ../albums.php?success=delete");
