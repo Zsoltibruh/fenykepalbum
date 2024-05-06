@@ -66,37 +66,8 @@
 
                         $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
 
-
-                        $query4 = "SELECT KEPEKID FROM $neptun.KEDVELI WHERE felhasznalonev LIKE ?";
-                        $stmt4 = $conn->prepare($query4);
-                        $stmt4->bindParam(1, $_SESSION["felhasznalonev"]);
-                        $stmt4->execute();
-
-                        $bennevan = FALSE;
-                        while ($row4 = $stmt4->fetch(PDO::FETCH_ASSOC)){
-
-                            if (in_array($row2['ID'], $row4)){
-                                $bennevan = TRUE;
-                            }
-
-                        }
-                        if($bennevan){
-                                
-                            echo "<form method='POST' class='like-button-form'>";
-                            echo "<input type='hidden' name='id' value='" . $row2['ID'] . "'>";
-                            echo "<input type='hidden' name='liked' value='" . $row2['ID'] . "'>";
-                            echo "<button type='submit' class = 'like-button'><img class='like-button liked' src='img/icons/like.svg' alt='liked'></button>";
-                            echo "<p class='like_count'>".$row3['LIKESZAM']."</p>";
-                            echo "</form>";
-                        } else {
-
-                            echo "<form method='POST' class='like-button-form'>";
-                            echo "<input type='hidden' name='id' value='" . $row2['ID'] . "'>";
-                            echo "<input type='hidden' name='not_liked' value='" . $row2['ID'] . "'>";
-                            echo "<button type='submit' class = 'like-button'><img class='like-button' src='img/icons/like.svg' alt='liked'></button>";
-                            echo "<p class='like_count'>".$row3['LIKESZAM']."</p>";
-                            echo "</form>";
-                        }
+                        likeButtons($conn, $_SESSION['felhasznalonev'], $row2['ID'], $row3['LIKESZAM']);
+                                                
                          ?>
                         <?php allCommentList($conn, $row2['ID']); ?>
                     </div>
