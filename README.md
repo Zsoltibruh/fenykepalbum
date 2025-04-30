@@ -1,2 +1,2 @@
 # fenykepalbum
-vau
+Fényképalbum létrehozása, ahol a regisztrált felhasználók bejelentkezés után albumokat hozhatnak létre, amelyekbe képeket tölthetnek fel, majd megoszthatják azokat másokkal. A képekhez feltöltéskor hozzáadhatóak címkék, amelyeknek listáját később módosítani is lehet. Képeket lehet kedvelni, illetve lehet hozzájuk hozzászólásokat fűzni. Felhasználók csakis és kizárólag az általuk létrehozott albumokat, illetve képeket tudják módosítani és törölni, adminisztrátorok viszont bárki albumjait és képet módosítani vagy törölni, illetve a hozzászólásokat is szabadon tudja kezelni. Admin mindezen kívül tudja módosítani a címkék listáját.
